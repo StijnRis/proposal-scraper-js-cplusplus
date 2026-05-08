@@ -1,0 +1,77 @@
+
+Proposal
+Temporal
+Upsert
+JSON.parse source text access
+Iterator Sequencing
+Uint8Array to/from Base64
+Math.sumPrecise
+Error.isError
+Array.fromAsync
+RegExp.escape
+Redeclarable global eval-introduced vars
+Float16 on TypedArrays, DataView, Math.f16round
+Promise.try
+Sync Iterator helpers
+JSON Modules
+Import Attributes
+RegExp Modifiers
+New Set methods
+Duplicate named capture groups
+ArrayBuffer transfer
+Promise.withResolvers
+Array Grouping
+Resizable and growable ArrayBuffers
+RegExp v flag with set notation + properties of strings
+Atomics.waitAsync
+Well-Formed Unicode Strings
+Change Array by Copy
+Symbols as WeakMap keys
+Hashbang Grammar
+Array find from last
+Error Cause
+Class Static Block
+Accessible Object.prototype.hasOwnProperty
+.at()
+Ergonomic brand checks for Private Fields
+Top-level await
+RegExp Match Indices
+Class Fields (Private instance methods and accessors, Class Public Instance Fields & Private Instance Fields, Static class fields and private static methods)
+Numeric separators
+Logical Assignment Operators
+WeakRefs
+Promise.any
+String.prototype.replaceAll
+import.meta
+Nullish coalescing Operator
+Optional Chaining
+for-in mechanics
+globalThis
+Promise.allSettled
+BigInt
+import()
+String.prototype.matchAll
+Array.prototype.{flat,flatMap}
+String.prototype.{trimStart,trimEnd}
+Well-formed JSON.stringify
+Object.fromEntries
+Function.prototype.toString revision
+Symbol.prototype.description
+JSON superset
+Optional catch binding
+Asynchronous Iteration
+Promise.prototype.finally
+RegExp Unicode Property Escapes
+RegExp Lookbehind Assertions
+Rest/Spread Properties
+RegExp named capture groups
+s (dotAll) flag for regular expressions
+Lifting template literal restriction
+Shared memory and atomics
+Async functions
+Trailing commas in function parameter lists and calls
+Object.getOwnPropertyDescriptors
+String padding
+Object.values/Object.entries
+Exponentiation operator
+Array.prototype.includes
