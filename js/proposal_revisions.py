@@ -1,3 +1,4 @@
+from datetime import datetime
 import logging
 import os
 from typing import Dict
@@ -9,17 +10,15 @@ from js import proposal_stages
 
 
 class ProposalRevision(BaseModel):
-    project_id: int
     proposal_id: str
     author: str | None
     title: str
-    created_at: str
+    created_at: datetime
     content: str
     implemented_at_version: str | None = None
 
 
 class ProposalV2(BaseModel):
-    project_id: int
     proposal_id: str
     stages: list[proposal_stages.StageHistoryEvent]
     revisions: list[ProposalRevision]
@@ -100,10 +99,9 @@ def fetch_revisions(proposals_v1: Dict[str, proposal_stages.ProposalV1]):
             previous_content = content
             revisions.append(
                 ProposalRevision(
-                    project_id=proposal_v1.project_id,
                     proposal_id=proposal_v1.proposal_id,
                     title=title,
-                    created_at=str(commit.committed_datetime),
+                    created_at=commit.committed_datetime,
                     content=content,
                     author=commit.author.name,
                 )
@@ -116,7 +114,6 @@ def fetch_revisions(proposals_v1: Dict[str, proposal_stages.ProposalV1]):
             )
 
         proposals[proposal_v1.proposal_id] = ProposalV2(
-            project_id=proposal_v1.project_id,
             proposal_id=proposal_v1.proposal_id,
             revisions=revisions,
             stages=proposal_v1.stages,

@@ -1,0 +1,30 @@
+[
+    {
+        "proposal_id": "Legacy RegExp features in JavaScript",
+        "date": "2026-01-21T00:00:00Z",
+        "comments": [
+            {
+                "author": "P",
+                "content": "Our first proposal is an old, legacy RegExp features in JavaScript, champions listed are Mark Miller and Claude Pache. This proposal has not been presented since the last time it was discussed in one of these reviews in July of ‘23 and last actually presented, I think in May 12017, although that information might be out of date. What was said at the time was:\n“Implementors have lost interest in implementing this proposal, and possibly the champion group has as well. CM was asked to reach out to champions' group.”\nSo if we have CM, I’m wondering if—"
+            },
+            {
+                "author": "C",
+                "content": "This was in July of 2023. So I certainly don’t remember any of this. I suspect that at the time, what that was is I’ve been working regularly with MM, and I was just—he wasn’t present, and so I was to call this to his attention. I probably did, but I don’t remember. I think MM might be here. And you can ask him."
+            }
+        ]
+    },
+     {
+        "proposal_id": "Legacy RegExp features in JavaScript",
+        "date": "2017-05-25T00:00:00Z",
+        "comments": [
+            {
+                "author": "M",
+                "content": "WH & DE objected to exempting subclasses from legacy features"
+            },
+            {
+                "author": "D",
+                "content": "WH: Exempting subclasses doesn't serve positive purpose and is very confusing."
+            }
+        ]
+    }
+]

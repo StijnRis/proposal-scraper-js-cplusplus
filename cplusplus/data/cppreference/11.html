@@ -1,0 +1,2104 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Compiler support for C++11 - cppreference.com</title>
+<script>document.documentElement.className="client-js";RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"01e4808eddb1c77c3a8eb7a5","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"cpp/compiler_support/11","wgTitle":"cpp/compiler support/11","wgCurRevisionId":169953,"wgRevisionId":169953,"wgArticleId":19808,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"cpp/compiler_support/11","wgRelevantArticleId":19808,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.pygments":"ready","skins.cppreference2.styles":"ready","jquery.makeCollapsible.styles":"ready"};RLPAGEMODULES=["ext.pygments.view","site","mediawiki.page.ready","jquery.makeCollapsible","skins.cppreference2.js","ext.checkUser.clientHints","ext.gadget.ColiruCompiler","ext.gadget.StandardRevisions","ext.gadget.MathJax"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/load.php?lang=en&amp;modules=ext.pygments%7Cjquery.makeCollapsible.styles%7Cskins.cppreference2.styles&amp;only=styles&amp;skin=cppreference2">
+<script async="" src="/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=cppreference2"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=cppreference2">
+<meta name="generator" content="MediaWiki 1.43.8">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/rest.php/v1/search" title="cppreference.com (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://cppreference.com/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="cppreference.com Atom feed" href="/index.php?title=Special:RecentChanges&amp;feed=atom">
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-cpp_compiler_support_11 rootpage-cpp skin-cppreference2 action-view cpp-navbar"><!-- header -->
+<div id="mw-head" class="noprint">
+    <div id="cpp-head-first-base">
+        <div id="cpp-head-first">
+            <h5><a href="/">cppreference.com</a></h5>
+            <div id="cpp-head-search">
+                <div id="p-search">
+                    <h5>Search</h5>
+                    <form action="/index.php" id="searchform">
+                        <div id="simpleSearch">
+                            <input type="search" name="search" placeholder="Search cppreference.com" aria-label="Search cppreference.com" autocapitalize="none" title="Search cppreference.com [f]" accesskey="f" id="searchInput">                            <input type="hidden" name="title" value="Special:Search">
+                            <button id="searchButton" type="submit" name="go" title="Search">&#x1F50D;</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="cpp-head-personal">
+                <div id="p-personal" class="">
+<span id="pt-createaccount"><a href="/index.php?title=Special:CreateAccount&amp;returnto=cpp%2Fcompiler+support%2F11" title="You are encouraged to create an account and log in; however, it is not mandatory"><span>Create account</span></a></span>                    <div class="menu">
+                        <ul lang="en" dir="ltr">
+<li id="pt-login" class="mw-list-item"><a href="/index.php?title=Special:UserLogin&amp;returnto=cpp%2Fcompiler+support%2F11" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="cpp-head-second-base">
+        <div id="cpp-head-second">
+            <div id="cpp-head-tools-left">
+                <!-- namespaces -->
+                <div id="p-namespaces" class="vectorTabs"><h5>Namespaces</h5><ul lang="en" dir="ltr"><li id="ca-nstab-main" class="selected mw-list-item"><a href="/cpp/compiler_support/11" title="View the content page [c]" accesskey="c"><span>Page</span></a></li>
+<li id="ca-talk" class="new mw-list-item"><a href="/index.php?title=Talk:cpp/compiler_support/11&amp;action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li>
+</ul></div>                <!-- variants -->
+                <div id="p-variants" class="vectorMenu emptyPortlet"><h5><span>Variants</span><a href="#"></a></h5><div class="menu"><ul lang="en" dir="ltr"></ul></div></div>            </div>
+            <div id="cpp-head-tools-right">
+                <!-- views -->
+                <div id="p-views" class="vectorTabs"><h5>Views</h5><ul lang="en" dir="ltr"><li id="ca-view" class="selected mw-list-item"><a href="/cpp/compiler_support/11"><span>Read</span></a></li>
+<li id="ca-viewsource" class="mw-list-item"><a href="/index.php?title=cpp/compiler_support/11&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li>
+<li id="ca-history" class="mw-list-item"><a href="/index.php?title=cpp/compiler_support/11&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+</ul></div>                <!-- actions -->
+                <div id="p-cactions" class="vectorMenu emptyPortlet"><h5><span>Actions</span><a href="#"></a></h5><div class="menu"><ul lang="en" dir="ltr"></ul></div></div>            </div>
+        </div>
+    </div>
+</div>
+<!-- /header -->
+
+<!-- content -->
+<div id="cpp-content-base">
+    <div id="content" class="mw-body">
+        <a id="top"></a>
+        <div id="mw-js-message" style="display:none;" lang="en" dir="ltr"></div>
+        <!-- firstHeading -->
+        <h1 id="firstHeading" class="firstHeading">Compiler support for C++11</h1>
+        <!-- /firstHeading -->
+        <!-- bodyContent -->
+        <div id="bodyContent" class="mw-body-content">
+            <!-- tagline -->
+            <div id="siteSub">From cppreference.com</div>
+            <!-- /tagline -->
+            <!-- subtitle -->
+            <div id="contentSub" lang="en" dir="ltr"><div id="mw-content-subtitle"><div class="subpages">&lt; <bdi dir="ltr"><a href="/cpp" title="cpp">cpp</a></bdi> | <bdi dir="ltr"><a href="/cpp/compiler_support" title="cpp/compiler support">compiler support</a></bdi></div></div></div>
+            <!-- /subtitle -->
+            <!-- bodycontent -->
+            <div id="mw-content-text"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div class="t-navbar" style=""><div class="t-navbar-sep">&#160;</div><div class="t-navbar-head"><a href="/cpp" title="cpp">C++</a><div class="t-navbar-menu"><div><div><table class="t-nv-begin" cellpadding="0" style="line-height:1.1em;">
+<tbody><tr class="t-nv"><td colspan="5"><a href="/cpp/compiler_support" title="cpp/compiler support">Compiler support</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/freestanding" title="cpp/freestanding">Freestanding and hosted</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/language" title="cpp/language">Language</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/standard_library" title="cpp/standard library">Standard library</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/header" title="cpp/header">Standard library headers</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/named_req" title="cpp/named req">Named requirements</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/feature_test" title="cpp/feature test">Feature test macros</a> <span class="t-mark-rev t-since-cxx20">(C++20)</span></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/utility#Language_support" title="cpp/utility">Language support library</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/concepts" title="cpp/concepts">Concepts library</a> <span class="t-mark-rev t-since-cxx20">(C++20)</span></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/error" title="cpp/error">Diagnostics library</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/memory" title="cpp/memory">Memory management library</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/meta" title="cpp/meta">Metaprogramming library</a> <span class="t-mark-rev t-since-cxx11">(C++11)</span></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/utility" title="cpp/utility">General utilities library</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/container" title="cpp/container">Containers library</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/iterator" title="cpp/iterator">Iterators library</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/ranges" title="cpp/ranges">Ranges library</a> <span class="t-mark-rev t-since-cxx20">(C++20)</span></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/algorithm" title="cpp/algorithm">Algorithms library</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/string" title="cpp/string">Strings library</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/text" title="cpp/text">Text processing library</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/numeric" title="cpp/numeric">Numerics library</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/chrono" title="cpp/chrono">Date and time library</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/io" title="cpp/io">Input/output library</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/filesystem" title="cpp/filesystem">Filesystem library</a> <span class="t-mark-rev t-since-cxx17">(C++17)</span></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/thread" title="cpp/thread">Concurrency support library</a> <span class="t-mark-rev t-since-cxx11">(C++11)</span></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/execution" title="cpp/execution">Execution control library</a> <span class="t-mark-rev t-since-cxx26">(C++26)</span></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/experimental" title="cpp/experimental">Technical specifications</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/symbol_index" title="cpp/symbol index">Symbols index</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/links/libs" title="cpp/links/libs">External libraries</a></td></tr>
+</tbody></table></div><div><span class="editsection noprint plainlinks" title="Edit this template"><a rel="nofollow" class="external text" href="https://cppreference.com/index.php?title=Template:cpp/navbar_content&amp;action=edit">&#91;edit&#93;</a></span></div></div></div></div><div class="t-navbar-sep">&#160;</div><div class="t-navbar-head"><a href="/cpp/compiler_support" title="cpp/compiler support">Compiler support</a><div class="t-navbar-menu"><div><div style="display:inline-block">
+<div><table class="t-nv-begin" cellpadding="0" style="">
+<tbody><tr class="t-nv"><td colspan="5"><a class="mw-selflink selflink">C++11</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/compiler_support/14" title="cpp/compiler support/14">C++14</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/compiler_support/17" title="cpp/compiler support/17">C++17</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/compiler_support/20" title="cpp/compiler support/20">C++20</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/compiler_support/23" title="cpp/compiler support/23">C++23</a></td></tr>
+<tr class="t-nv"><td colspan="5"><a href="/cpp/compiler_support/26" title="cpp/compiler support/26">C++26</a></td></tr>
+</tbody></table></div>
+</div><div><span class="editsection noprint plainlinks" title="Edit this template"><a rel="nofollow" class="external text" href="https://cppreference.com/index.php?title=Template:cpp/compiler_support/navbar_content&amp;action=edit">&#91;edit&#93;</a></span></div></div></div></div><div class="t-navbar-sep">&#160;</div></div>
+<p><span title="pop-up tooltip example: implemented in Circle ver. 3.14 and above">*</span> - hover over a cell marked with the star <span title="another tooltip example">*</span> to see additional pop-up notes.<br />
+DR<i>nn</i> - the number <i>nn</i> after "DR" denotes target C++ revision the Defect Report is applied to, e.g., DR20 &#8594; C++20.
+</p>
+<h3><span id="C.2B.2B11_core_language_features"></span><span class="mw-headline" id="C++11_core_language_features">C++11 core language features</span></h3>
+<table class="wikitable tbody-scroll mw-collapsible t-compiler-support-top" style="font-size:0.8em; width:100%">
+
+<tbody><tr style="height:15em">
+<th style="vertical-align:bottom;">C++11 feature<br /><br />&#160;
+</th>
+<th style="vertical-align:bottom;">Paper(s)<br /><br />&#160;
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>GCC</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>Clang</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>MSVC</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>Apple Clang</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>EDG eccp</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>Intel C++</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div><span title="ex Portland Group/PGI">Nvidia HPC C++ (ex PGI)*</span></div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>Nvidia nvcc</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>Cray</div></div>&#160;
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>Embarcadero C++ Builder</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>IBM Open XL C++ for AIX</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>IBM Open XL C++ for z/OS</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>IBM XL C++</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>Sun/Oracle C++</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>HP aCC</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>Digital Mars C++</div></div>
+</th>
+<th>
+</th></tr>
+<tr>
+<td>C99 <a href="/cpp/preprocessor" title="cpp/preprocessor">preprocessor</a>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N1653">N1653</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.3
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2015">19.0 (2015)*</span> <span title="buggy variadic macros">(partial)*</span><br /><span title="VS 2019 16.6">19.26*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">11.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">10.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.25
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td></tr>
+<tr>
+<td><span id="cpp&#95;static&#95;assert&#95;200410L"></span><a href="/cpp/language/static_assert" title="cpp/language/static assert"><tt>static_assert</tt></a>&#160; (<a href="/cpp/feature_test#cpp_static_assert" title="cpp/feature test">FTM</a>)<span title="Feature-testing macro:&#10;&#95;&#95;cpp&#95;static&#95;assert = 200410L">*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N1720">N1720</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.3
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2010">16.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">11.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">11.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.25
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.52
+</td></tr>
+<tr>
+<td>Right angle brackets
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N1757">N1757</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.3
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2005">14.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">11.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">12.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td>Extended <a href="/cpp/language/friend" title="cpp/language/friend"><tt>friend</tt></a> declarations
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N1791">N1791</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.7
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2010">16.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">11.1 (partial)<br />12.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">11.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.25
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><code><a href="/cpp/language/types#long_long" title="cpp/language/types">long long</a></code>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N1811">N1811</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2005">14.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td></tr>
+<tr>
+<td><a href="/cpp/language/auto" title="cpp/language/auto"><tt>auto</tt></a>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N1984">N1984</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.4
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2010">16.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">11.0 <span title="v0.9">(partial)*</span><br />12.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">11.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.25
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><span id="cpp&#95;delegating&#95;constructors&#95;200604L"></span><a href="/cpp/language/initializer_list#Delegating_constructor" class="mw-redirect" title="cpp/language/initializer list">Delegating constructors</a>&#160; (<a href="/cpp/feature_test#cpp_delegating_constructors" title="cpp/feature test">FTM</a>)<span title="Feature-testing macro:&#10;&#95;&#95;cpp&#95;delegating&#95;constructors = 200604L">*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N1986">N1986</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.7
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2013">18.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.7
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">14.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">11.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.28
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><code style="white-space: pre;" class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><span class="k">extern</span><span class="w"> </span><span class="k">template</span></code>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N1987">N1987</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.3
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="MSVC++ 6.0">12.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">9.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">11.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.25
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><span id="cpp&#95;constexpr&#95;200704L"></span><a href="/cpp/language/constexpr" title="cpp/language/constexpr"><tt>constexpr</tt></a>&#160; (<a href="/cpp/feature_test#cpp_constexpr" title="cpp/feature test">FTM</a>)<span title="Feature-testing macro:&#10;&#95;&#95;cpp&#95;constexpr = 200704L">*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2235">N2235</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.6
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2015">19.0 (2015)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.6
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">13.0 (partial)<br />14.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">12.1 (partial)<br />13.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.28
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><span id="cpp&#95;unicode&#95;characters&#95;200704L"></span><code><a href="/cpp/language/types#char16_t" title="cpp/language/types">char16_t</a></code> and <code><a href="/cpp/language/types#char32_t" title="cpp/language/types">char32_t</a></code>&#160; (<a href="/cpp/feature_test#cpp_unicode_characters" title="cpp/feature test">FTM</a>)<span title="Feature-testing macro:&#10;&#95;&#95;cpp&#95;unicode&#95;characters = 200704L">*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2249">N2249</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.4
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2015">19.0 (2015)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.4
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="partial on Windows; yes on Linux and OS X">12.1 (partial)*</span><br />14.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="Linux LE / zLinux BE">13.1.1*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.27
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.52
+</td></tr>
+<tr>
+<td>Compiler support for <a href="/cpp/meta#Type_traits" title="cpp/meta">type traits</a>. <span title="Although outdated and not entirely correct, it shows the common fact the mainstream compilers have">N2255*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2255">N2255</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/N2984">N2984</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/N3142">N3142</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="The first version that contains incomplete and obsolete type&#95;traits as defined in N2518">4.3 (partial)*</span><br /><span title="lack of &#95;&#95;is&#95;trivial(ly)*, which requires compiler support, that means gcc officially claims 4.8 has full C++11 support but actually not">4.8 (partial)*</span><br />5
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2005">14.0*</span><br /><span title="The first version that contains incomplete and obsolete type&#95;traits as defined in N2518">(partial)*</span><br /><span title="VS 2015">19.0 (2015)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">10.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">13.1.3
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">6.16
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><span id="cpp&#95;alias&#95;templates&#95;200704L"></span><a href="/cpp/language/type_alias" title="cpp/language/type alias">Template aliases</a>&#160; (<a href="/cpp/feature_test#cpp_alias_templates" title="cpp/feature test">FTM</a>)<span title="Feature-testing macro:&#10;&#95;&#95;cpp&#95;alias&#95;templates = 200704L">*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2258">N2258</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.7
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2013">18.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.2
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">12.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="Linux LE / zLinux BE; non-debug">13.1.1*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.27
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><a href="/cpp/language/alignas" title="cpp/language/alignas"><tt>alignas</tt></a>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2341">N2341</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.8
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2015">19.0 (2015)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.8
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">15.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.6&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="Linux LE / zLinux BE">13.1.2*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><a href="/cpp/language/alignof" title="cpp/language/alignof"><tt>alignof</tt></a>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2341">N2341</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.5
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2015">19.0 (2015)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.8
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">15.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="Linux LE / zLinux BE">13.1.2*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td>Defaulted and deleted functions
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2346">N2346</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.4
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2013">18.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">12.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">13.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.25
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><a href="/cpp/language/enum#Scoped_enumerations" title="cpp/language/enum">Strongly-typed <code>enum</code></a>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2347">N2347</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.4
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2010">16.0*</span> (partial)<br /><span title="VS 2012">17.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">13.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">12.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.25
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><a href="/cpp/thread#Atomic_operations" title="cpp/thread">Atomic operations</a>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2427">N2427</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.4
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2012">17.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">13.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="&#39;Linux only&#39;">13.1.2*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.14
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><a href="/cpp/language/nullptr" title="cpp/language/nullptr"><tt>nullptr</tt></a>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2431">N2431</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.6
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2010">16.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.2
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">12.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">13.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.27
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.52
+</td></tr>
+<tr>
+<td>Explicit <a href="/cpp/language/cast_operator" title="cpp/language/cast operator">conversion operators</a>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2437">N2437</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.5
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2013">18.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.4
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">13.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">12.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.27
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><span id="cpp&#95;ref&#95;qualifiers&#95;200710L"></span>ref-qualifiers&#160; (<a href="/cpp/feature_test#cpp_ref_qualifiers" title="cpp/feature test">FTM</a>)<span title="Feature-testing macro:&#10;&#95;&#95;cpp&#95;ref&#95;qualifiers = 200710L">*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2439">N2439</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.8.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2015">19.0 (2015)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.7
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">14.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="Linux LE / zLinux BE">13.1.2*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.28
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><span id="cpp&#95;raw&#95;strings&#95;200710L"></span>Unicode <a href="/cpp/language/string_literal" title="cpp/language/string literal">string literals</a>&#160; (<a href="/cpp/feature_test#cpp_raw_strings" title="cpp/feature test">FTM</a>)<span title="Feature-testing macro:&#10;&#95;&#95;cpp&#95;raw&#95;strings = 200710L">*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2442">N2442</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.4
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2015">19.0 (2015)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.7
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="undocumented">11.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="AIX/Linux/xOS BE">10.1*</span><br /><span title="Linux LE / zLinux BE">13.1.1*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.7
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.28
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.52
+</td></tr>
+<tr>
+<td><span id="cpp&#95;unicode&#95;literals&#95;200710L"></span>Raw <a href="/cpp/language/string_literal" title="cpp/language/string literal">string literals</a>&#160; (<a href="/cpp/feature_test#cpp_unicode_literals" title="cpp/feature test">FTM</a>)<span title="Feature-testing macro:&#10;&#95;&#95;cpp&#95;unicode&#95;literals = 200710L">*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2442">N2442</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.5
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2013">18.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.7
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">14.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #ffff90; color: black; vertical-align: middle; text-align: center;" class="table-maybe"><span title="Linux LE / zLinux BE">13.1.1, except AIX xlC 13.1.3*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.28
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.52
+</td></tr>
+<tr>
+<td><a href="/cpp/language/namespace#Inline_namespaces" title="cpp/language/namespace">Inline namespaces</a>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2535">N2535</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.4
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2015">19.0 (2015)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.5
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">14.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">11.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.28
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><span id="cpp&#95;inheriting&#95;constructors&#95;200802L"></span><a href="/cpp/language/using_declaration#Inheriting_constructors" title="cpp/language/using declaration">Inheriting constructors</a>&#160; (<a href="/cpp/feature_test#cpp_inheriting_constructors" title="cpp/feature test">FTM</a>)<span title="Feature-testing macro:&#10;&#95;&#95;cpp&#95;inheriting&#95;constructors = 200802L">*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2540">N2540</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.8
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.3
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2015">19.0 (2015)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.8
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">15.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="Linux LE / zLinux BE">13.1.1*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><a href="/cpp/language/function#Function_declaration" title="cpp/language/function">Trailing function return types</a>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2541">N2541</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.4
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2010">16.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">12.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">12.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.27
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td>Unrestricted <a href="/cpp/language/union" title="cpp/language/union"><tt>union</tt>s</a>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2544">N2544</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.6
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2015">19.0 (2015)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.6
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="Linux and OS X">14.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="Linux LE / zLinux BE">13.1.2*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.28
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><span id="cpp&#95;variadic&#95;templates&#95;200704L"></span><a href="/cpp/language/pack" title="cpp/language/pack">Variadic templates</a>&#160; (<a href="/cpp/feature_test#cpp_variadic_templates" title="cpp/feature test">FTM</a>)<span title="Feature-testing macro:&#10;&#95;&#95;cpp&#95;variadic&#95;templates = 200704L">*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2242">N2242</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/N2555">N2555</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.3 <span title="N2242">(partial)*</span><br />4.4
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2013">18.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.3 <span title="N2242">(partial)*</span><br />4.3
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">12.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #ffff90; color: black; vertical-align: middle; text-align: center;" class="table-maybe">11.1 <span title="N2242">(partial)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.27
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><a href="/cpp/language/sfinae#Expression_SFINAE" title="cpp/language/sfinae">Expression SFINAE</a>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2634">N2634</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.4
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2017 15.7">19.14*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.2
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">12.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td>Local and unnamed types as template parameters
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2657">N2657</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.5
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2010">16.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.2
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">12.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="Linux LE / zLinux BE">13.1.2*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.27
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><a href="/cpp/language/storage_duration" title="cpp/language/storage duration">Thread-local storage</a>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2659">N2659</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.4 (partial)<br />4.8
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="requires libc++abi 3.6 or later, or libsupc++ 4.8 or later">3.3*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2010">16.0*</span> (partial)<br /><span title="VS 2015">19.0 (2015)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.8
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">11.1 (partial)<br /><span title="Linux and OS X">15.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #ffff90; color: black; vertical-align: middle; text-align: center;" class="table-maybe"><span title="AIX/Linux/zOS BE; (all except Std name and dynamic init)">10.1 (partial)*</span><br /><span title="Linux LE / zLinux BE; (all except Std name and dynamic init)">13.1.2 (partial)*</span>
+</td>
+<td style="background: #ffff90; color: black; vertical-align: middle; text-align: center;" class="table-maybe">5.9 (partial)
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background: #ffff90; color: black; vertical-align: middle; text-align: center;" class="table-maybe">8.52 (partial)
+</td></tr>
+<tr>
+<td><span id="cpp&#95;threadsafe&#95;static&#95;init&#95;200806L"></span>Dynamic initialization and destruction with concurrency (<a href="/cpp/language/storage_duration#Static_local_variables" title="cpp/language/storage duration">magic statics</a>)&#160; (<a href="/cpp/feature_test#cpp_threadsafe_static_init" title="cpp/feature test">FTM</a>)<span title="Feature-testing macro:&#10;&#95;&#95;cpp&#95;threadsafe&#95;static&#95;init = 200806L">*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2660">N2660</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.3
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2015">19.0 (2015)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="Linux and OS X">11.1*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="Linux LE / zLinux BE">13.1.2*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.25
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td>Garbage Collection and Reachability-Based Leak Detection
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2670">N2670</a>
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">&#160;
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><span id="cpp&#95;initializer&#95;lists&#95;200806L"></span><a href="/cpp/language/list_initialization" title="cpp/language/list initialization">Initializer lists</a>&#160; (<a href="/cpp/feature_test#cpp_initializer_lists" title="cpp/feature test">FTM</a>)<span title="Feature-testing macro:&#10;&#95;&#95;cpp&#95;initializer&#95;lists = 200806L">*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2672">N2672</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.4
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2013">18.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.5
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">13.0 (partial)<br />14.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="Linux LE / zLinux BE">13.1.2*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.28
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><span id="cpp&#95;nsdmi&#95;200809L"></span><a href="/cpp/language/data_members#Member_initialization" title="cpp/language/data members">Non-static data member initializers</a>&#160; (<a href="/cpp/feature_test#cpp_nsdmi" title="cpp/feature test">FTM</a>)<span title="Feature-testing macro:&#10;&#95;&#95;cpp&#95;nsdmi = 200809L">*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2756">N2756</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.7
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2013">18.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.6
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">14.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="Linux LE / zLinux BE">13.1.2*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.28
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><span id="cpp&#95;attributes&#95;200809L"></span><span id="noreturn"></span><a href="/cpp/language/attributes" title="cpp/language/attributes">Attributes</a>, <code>&#91;&#91;<a href="/cpp/language/attributes/noreturn" title="cpp/language/attributes/noreturn">noreturn</a>]]</code>&#160; (<a href="/cpp/feature_test#cpp_attributes" title="cpp/feature test">FTM</a>)<span title="Feature-testing macro:&#10;&#95;&#95;cpp&#95;attributes = 200809L">*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2761">N2761</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.8
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.3
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2015">19.0 (2015)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.2
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">12.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="Linux LE / zLinux BE; except &#91;‎&#91;carries&#95;dependency&#93;‏&#93;">13.1.1*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.27
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><span id="carries&#95;dependency"></span><code>&#91;&#91;<a href="/cpp/language/attributes/carries_dependency" title="cpp/language/attributes/carries dependency">carries_dependency</a>]]</code>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2556">N2556</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/N2643">N2643</a>
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="the attribute has not effect">3.3*</span>
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">&#160;
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="the attribute has not effect">17.1.0*</span>
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><a href="/cpp/language/enum" title="cpp/language/enum">Forward (opaque) <code>enum</code> declarations</a>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2764">N2764</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.6
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2012">17.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.5
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">11.1 (partial)<br />14.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">12.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><span id="cpp&#95;user&#95;defined&#95;literals&#95;200809L"></span><a href="/cpp/language/user_literal" title="cpp/language/user literal">User-defined literals</a>&#160; (<a href="/cpp/feature_test#cpp_user_defined_literals" title="cpp/feature test">FTM</a>)<span title="Feature-testing macro:&#10;&#95;&#95;cpp&#95;user&#95;defined&#95;literals = 200809L">*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2765">N2765</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.7
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2015">19.0 (2015)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.8
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">15.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="Linux LE / zLinux BE">13.1.2*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.14
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><span id="cpp&#95;rvalue&#95;references&#95;200610L"></span><a href="/cpp/language/reference#Rvalue_references" title="cpp/language/reference">Rvalue references</a>&#160; (<a href="/cpp/feature_test#cpp_rvalue_references" title="cpp/feature test">FTM</a>)<span title="Feature-testing macro:&#10;&#95;&#95;cpp&#95;rvalue&#95;references = 200610L">*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2118">N2118</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/N2844">N2844</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/CWG1138">CWG1138</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.3 <span title="N2118">(partial)*</span><br />4.5
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2010">16.0*</span> <span title="N2844">(partial)*</span><br /><span title="VS 2012">17.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.5
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">11.1 <span title="N2118">(partial)*</span><br />12.0 <span title="N2844">(partial)*</span><br />14.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="lists N2118">7.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">12.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.25
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><span id="cpp&#95;lambdas&#95;200907L"></span><a href="/cpp/language/lambda" title="cpp/language/lambda">Lambda expressions</a>&#160; (<a href="/cpp/feature_test#cpp_lambdas" title="cpp/feature test">FTM</a>)<span title="Feature-testing macro:&#10;&#95;&#95;cpp&#95;lambdas = 200907L">*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2550">N2550</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/N2658">N2658</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/N2927">N2927</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.5
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2010">16.0*</span> <span title="N2658">(partial)*</span><br /><span title="VS 2012">17.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">12.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="Linux LE / zLinux BE">13.1.2*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.25
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><span id="cpp&#95;range&#95;based&#95;for&#95;200907L"></span><a href="/cpp/language/range-for" title="cpp/language/range-for">Range-for loop</a>&#160; (<a href="/cpp/feature_test#cpp_range_based_for" title="cpp/feature test">FTM</a>)<span title="Feature-testing macro:&#10;&#95;&#95;cpp&#95;range&#95;based&#95;for = 200907L">*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2930">N2930</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/N3271">N3271</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.6
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2012">17.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.5
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">13.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="Linux LE / zLinux BE; non-debug">13.1.2*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.28
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><a href="/cpp/language/noexcept_spec" title="cpp/language/noexcept spec"><tt>noexcept</tt></a>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N3050">N3050</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.6
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2015">19.0 (2015)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.5
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">14.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="Linux LE / zLinux BE">13.1.1*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.28
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td>Defaulted move <a href="/cpp/language/member_functions#Special_member_functions" title="cpp/language/member functions">special</a> <a href="/cpp/language/move_constructor" title="cpp/language/move constructor">member</a> <a href="/cpp/language/move_assignment" title="cpp/language/move assignment">functions</a>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N3053">N3053</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.6
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2015">19.0 (2015)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.5
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">14.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.25
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><a href="/cpp/language/override" title="cpp/language/override"><tt>override</tt></a> and <a href="/cpp/language/final" title="cpp/language/final"><tt>final</tt></a>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2928">N2928</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/N3206">N3206</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/N3272">N3272</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.7
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2005">14.0*</span> (partial)<br /><span title="VS 2012">17.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.8
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">12.0 <span title="N2928">(partial)*</span><br />14.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="Linux LE / zLinux BE">13.1.1*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><span id="cpp&#95;decltype&#95;200707L"></span><a href="/cpp/language/decltype" title="cpp/language/decltype"><tt>decltype</tt></a>&#160; (<a href="/cpp/feature_test#cpp_decltype" title="cpp/feature test">FTM</a>)<span title="Feature-testing macro:&#10;&#95;&#95;cpp&#95;decltype = 200707L">*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2343">N2343</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/N3276">N3276</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.3 <span title="N2343">(partial)*</span><br />4.8.1
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2010">16.0*</span> <span title="N2343">(partial)*</span><br /><span title="VS 2012">17.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.2 <span title="N2343">(partial)*</span><br />4.8
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">11.0 <span title="N2343">(partial)*</span><br />12.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2015
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">7.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">8.4&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">1.1.0
+</td>
+<td style="background: #ffff90; color: black; vertical-align: middle; text-align: center;" class="table-maybe">11.1 <span title="N2343">(partial)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">A.06.25
+</td>
+<td style="background: #ffff90; color: black; vertical-align: middle; text-align: center;" class="table-maybe">8.52 <span title="N2343">(partial)*</span>
+</td></tr>
+<tr style="height:15em">
+<th style="vertical-align:top;">&#160;<br /><br />C++11 feature
+</th>
+<th style="vertical-align:top;">&#160;<br /><br />Paper(s)
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>GCC</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>Clang</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>MSVC</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>Apple Clang</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>EDG eccp</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>Intel C++</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div><span title="ex Portland Group/PGI">Nvidia HPC C++ (ex PGI)*</span></div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>Nvidia nvcc</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>Cray</div></div>&#160;
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>Embarcadero C++ Builder</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>IBM Open XL C++ for AIX</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>IBM Open XL C++ for z/OS</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>IBM XL C++</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>Sun/Oracle C++</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>HP aCC</div></div>
+</th>
+<th style="width:40pt;"><div class="t-vertical"><div>Digital Mars C++</div></div>
+</th></tr></tbody></table>
+<h3><span id="C.2B.2B11_library_features"></span><span class="mw-headline" id="C++11_library_features">C++11 library features</span></h3>
+<table class="wikitable tbody-scroll mw-collapsible t-standard-library-support-top" style="font-size:0.8em; width:100%">
+
+<tbody><tr style="height:15em">
+<th style="vertical-align:bottom;">C++11 feature<br /><br />&#160;
+</th>
+<th style="vertical-align:bottom;">Paper(s)<br /><br />&#160;
+</th>
+<th style="width: 40pt;"><div class="t-vertical"><div>GCC libstdc++</div></div>
+</th>
+<th style="width: 40pt;"><div class="t-vertical"><div>Clang libc++</div></div>
+</th>
+<th style="width: 40pt;"><div class="t-vertical"><div>MSVC STL</div></div>
+</th>
+<th style="width: 40pt;"><div class="t-vertical"><div><span title="C++ Standard Library">Apple Clang*</span></div></div>&#160;
+</th>
+<th style="width: 40pt;"><div class="t-vertical"><div><span title="C/C++ Standard Library">IBM Open XL C/C++ for AIX*</span></div></div>
+</th>
+<th style="width: 40pt;"><div class="t-vertical"><div><span title="C++ Standard Library">Sun/Oracle C++*</span></div></div>
+</th>
+<th style="width: 40pt;"><div class="t-vertical"><div><span title="C++ Standard Library">Embarcadero C++ Builder*</span></div></div>
+</th>
+<th>
+</th></tr>
+<tr>
+<td><a href="/cpp/regex" title="cpp/regex">Regular expressions library</a>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N1429">N1429</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.9
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">2.8
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><a href="/cpp/meta#Type_traits" title="cpp/meta">Type traits</a>. <span title="Originally, compiler support was not required, and traits that expected compiler support were permitted to report incorrect results. N2255 removed such permission.">N1836*</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N1836">N1836</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/N2240">N2240</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/N2244">N2244</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/N2255">N2255</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/N2342">N2342</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/N2984">N2984</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/N3142">N3142</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="The first version that contains incomplete and obsolete type&#95;traits as defined in N1836">4.3 (partial)*</span><br /><span title="lack of is&#95;trivial(ly)*, which requires compiler support, that means gcc officially claims 4.8 has full c++11 support but actually not">4.8 (partial)*</span><br />5
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2005">14.0*</span><br /><span title="The first version that contains incomplete and obsolete type&#95;traits as defined in N1836">(partial)*</span><br /><span title="VS 2015">19.0 (2015)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.13
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td></tr>
+<tr>
+<td>Member functions <code>cbegin</code>, <code>cend</code>, <code>crbegin</code>, and <code>crend</code> of containers
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N1913">N1913</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/LWG1192">LWG1192</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">4.3 <span title="N1913">(partial)*</span><br />4.5
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="added in C++98 mode">Yes*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2010">16.0*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="added in C++98 mode">Yes*</span>&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><a href="/cpp/header/memory#Functions" title="cpp/header/memory">Garbage Collection</a> and Reachability-Based Leak Detection (<a href="/cpp/memory#Garbage_collector_support" title="cpp/memory">library support</a>)
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2670">N2670</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">6<br /><span title="no-op library API, as required by n2670 when GC is not supported">(no-op)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.4<br /><span title="no-op library API, as required by n2670 when GC is not supported">(no-op)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2015">19.0 (2015)*</span><br /><span title="no-op library API, as required by n2670 when GC is not supported">(no-op)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes<br /><span title="no-op library API, as required by n2670 when GC is not supported">(no-op)*</span>&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td><a href="/cpp/io/manip" title="cpp/io/manip">Money, Time, and hexfloat I/O manipulators</a>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2071">N2071</a><br /><a rel="nofollow" class="external text" href="https://wg21.link/N2072">N2072</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">3.8
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes"><span title="VS 2015">19.0 (2015)*</span>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5.15
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr>
+<td>Disallowing <a href="/cpp/language/acronyms" title="cpp/language/acronyms">COW (copy-on-write)</a> <span class="t-lc">std::basic_string</span>
+</td>
+<td><a rel="nofollow" class="external text" href="https://wg21.link/N2668">N2668</a>
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">5
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes&#160;
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">17.1.0
+</td>
+<td style="background: #90ff90; color: black; vertical-align: middle; text-align: center;" class="table-yes">Yes
+</td>
+<td style="background:#ff9090; color:black; vertical-align: middle; text-align: center;" class="table-no">
+</td></tr>
+<tr style="height:15em">
+<th style="vertical-align:top;">&#160;<br /><br /> C++11 feature
+</th>
+<th style="vertical-align:top;">&#160;<br /><br /> Paper(s)
+</th>
+<th style="width: 40pt;"><div class="t-vertical"><div>GCC libstdc++</div></div>
+</th>
+<th style="width: 40pt;"><div class="t-vertical"><div>Clang libc++</div></div>
+</th>
+<th style="width: 40pt;"><div class="t-vertical"><div>MSVC STL</div></div>
+</th>
+<th style="width: 40pt;"><div class="t-vertical"><div><span title="C++ Standard Library">Apple Clang*</span></div></div>&#160;
+</th>
+<th style="width: 40pt;"><div class="t-vertical"><div><span title="C/C++ Standard Library">IBM Open XL C/C++ for AIX*</span></div></div>
+</th>
+<th style="width: 40pt;"><div class="t-vertical"><div><span title="C++ Standard Library">Sun/Oracle C++*</span></div></div>
+</th>
+<th style="width: 40pt;"><div class="t-vertical"><div><span title="C++ Standard Library">Embarcadero C++ Builder*</span></div></div>
+</th></tr></tbody></table>
+<!-- 
+NewPP limit report
+Cached time: 20260510233656
+Cache expiry: 2592000
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.247 seconds
+Real time usage: 0.259 seconds
+Preprocessor visited node count: 36169/1000000
+Post‐expand include size: 524368/4194304 bytes
+Template argument size: 214816/4194304 bytes
+Highest expansion depth: 19/100
+Expensive parser function count: 1/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 191/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%  206.437      1 -total
+ 91.81%  189.529      1 Template:cpp/compiler_support/11
+ 76.28%  157.466      1 Template:compiler_support
+ 73.58%  151.887     45 Template:compiler_support_row
+ 23.99%   49.518    666 Template:yes
+ 17.61%   36.352    146 Template:popup
+ 16.39%   33.835     56 Template:msvc_ver
+ 12.62%   26.047      1 Template:standard_library_support
+ 11.58%   23.900      6 Template:standard_library_support_row
+ 11.56%   23.863    456 Template:ftm2anchor
+-->
+
+<!-- Saved in parser cache with key en:pcache:idhash:19808-0!canonical and timestamp 20260510233656 and revision id 169953. Rendering was triggered because: page-view
+ -->
+</div></div>
+            <!-- /bodycontent -->
+            <!-- catlinks -->
+            <div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>            <!-- /catlinks -->
+            <div class="visualClear"></div>
+            <!-- debughtml -->
+                        <!-- /debughtml -->
+        </div>
+        <!-- /bodyContent -->
+    </div>
+</div>
+<!-- /content -->
+
+<!-- footer -->
+<div id="cpp-footer-base" class="noprint">
+    <div id="footer" lang="en" dir="ltr">
+        <!-- navigation -->
+        <div id="cpp-navigation">
+            <h5>Navigation</h5>
+            <ul>
+                <li id="n-Support-us" class="mw-list-item"><a href="http://www.cppreference.com/support" rel="nofollow"><span>Support us</span></a></li>                <li id="n-recentchanges" class="mw-list-item"><a href="/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>                <li id="n-FAQ" class="mw-list-item"><a href="/Cppreference:FAQ"><span>FAQ</span></a></li>                <li id="n-Offline-version" class="mw-list-item"><a href="/Cppreference:Archives"><span>Offline version</span></a></li>            </ul>
+        </div>
+        <!-- toolbox -->
+        <div id="cpp-toolbox">
+            <h5><span>Tools</span><a href="#"></a></h5>
+            <ul>
+                <li id="t-whatlinkshere" class="mw-list-item"><a href="/Special:WhatLinksHere/cpp/compiler_support/11" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li>                <li id="t-recentchangeslinked" class="mw-list-item"><a href="/Special:RecentChangesLinked/cpp/compiler_support/11" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li>                <li id="t-upload" class="mw-list-item"><a href="http://upload.cppreference.com/w/Special:Upload" title="Upload files [u]" accesskey="u"><span>Upload file</span></a></li>                <li id="t-specialpages" class="mw-list-item"><a href="/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li>                <li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li>                <li id="t-permalink" class="mw-list-item"><a href="/index.php?title=cpp/compiler_support/11&amp;oldid=169953" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li>                <li id="t-info" class="mw-list-item"><a href="/index.php?title=cpp/compiler_support/11&amp;action=info" title="More information about this page"><span>Page information</span></a></li>            </ul>
+        </div>
+        <!-- languages -->
+        <div id="cpp-languages">
+            <div><ul><li>In other languages</li></ul></div>
+            <div><ul>
+                <li class="interlanguage-link interwiki-de mw-list-item"><a href="https://de.cppreference.com/cpp/compiler_support/11" title="cpp/compiler support/11 – Deutsch" lang="de" hreflang="de" data-title="cpp/compiler support/11" data-language-autonym="Deutsch" data-language-local-name="Deutsch" class="interlanguage-link-target"><span>Deutsch</span></a></li>                <li class="interlanguage-link interwiki-es mw-list-item"><a href="http://es.cppreference.com/cpp/compiler_support/11" title="cpp/compiler support/11 – español" lang="es" hreflang="es" data-title="cpp/compiler support/11" data-language-autonym="Español" data-language-local-name="español" class="interlanguage-link-target"><span>Español</span></a></li>                <li class="interlanguage-link interwiki-fr mw-list-item"><a href="http://fr.cppreference.com/cpp/compiler_support/11" title="cpp/compiler support/11 – français" lang="fr" hreflang="fr" data-title="cpp/compiler support/11" data-language-autonym="Français" data-language-local-name="français" class="interlanguage-link-target"><span>Français</span></a></li>                <li class="interlanguage-link interwiki-it mw-list-item"><a href="http://it.cppreference.com/cpp/compiler_support/11" title="cpp/compiler support/11 – italiano" lang="it" hreflang="it" data-title="cpp/compiler support/11" data-language-autonym="Italiano" data-language-local-name="italiano" class="interlanguage-link-target"><span>Italiano</span></a></li>                <li class="interlanguage-link interwiki-ja mw-list-item"><a href="http://ja.cppreference.com/cpp/compiler_support/11" title="cpp/compiler support/11 – 日本語" lang="ja" hreflang="ja" data-title="cpp/compiler support/11" data-language-autonym="日本語" data-language-local-name="日本語" class="interlanguage-link-target"><span>日本語</span></a></li>                <li class="interlanguage-link interwiki-pt mw-list-item"><a href="http://pt.cppreference.com/cpp/compiler_support/11" title="cpp/compiler support/11 – português" lang="pt" hreflang="pt" data-title="cpp/compiler support/11" data-language-autonym="Português" data-language-local-name="português" class="interlanguage-link-target"><span>Português</span></a></li>                <li class="interlanguage-link interwiki-pl mw-list-item"><a href="http://pl.cppreference.com/cpp/compiler_support/11" title="cpp/compiler support/11 – polski" lang="pl" hreflang="pl" data-title="cpp/compiler support/11" data-language-autonym="Polski" data-language-local-name="polski" class="interlanguage-link-target"><span>Polski</span></a></li>                <li class="interlanguage-link interwiki-ru mw-list-item"><a href="http://ru.cppreference.com/cpp/compiler_support/11" title="cpp/compiler support/11 – русский" lang="ru" hreflang="ru" data-title="cpp/compiler support/11" data-language-autonym="Русский" data-language-local-name="русский" class="interlanguage-link-target"><span>Русский</span></a></li>                <li class="interlanguage-link interwiki-zh mw-list-item"><a href="http://zh.cppreference.com/cpp/compiler_support/11" title="cpp/compiler support/11 – 中文" lang="zh" hreflang="zh" data-title="cpp/compiler support/11" data-language-autonym="中文" data-language-local-name="中文" class="interlanguage-link-target"><span>中文</span></a></li>            </ul></div>
+        </div>
+        <!-- footer links -->
+        <div style="clear:both"></div>
+    </div>
+</div>
+<!-- /footer -->
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":330,"wgPageParseReport":{"limitreport":{"cputime":"0.247","walltime":"0.259","ppvisitednodes":{"value":36169,"limit":1000000},"postexpandincludesize":{"value":524368,"limit":4194304},"templateargumentsize":{"value":214816,"limit":4194304},"expansiondepth":{"value":19,"limit":100},"expensivefunctioncount":{"value":1,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":191,"limit":5000000},"timingprofile":["100.00%  206.437      1 -total"," 91.81%  189.529      1 Template:cpp/compiler_support/11"," 76.28%  157.466      1 Template:compiler_support"," 73.58%  151.887     45 Template:compiler_support_row"," 23.99%   49.518    666 Template:yes"," 17.61%   36.352    146 Template:popup"," 16.39%   33.835     56 Template:msvc_ver"," 12.62%   26.047      1 Template:standard_library_support"," 11.58%   23.900      6 Template:standard_library_support_row"," 11.56%   23.863    456 Template:ftm2anchor"]},"cachereport":{"timestamp":"20260510233656","ttl":2592000,"transientcontent":false}}});});</script>
+</body>
+<!-- Cached 20260510233656 -->
+</html>

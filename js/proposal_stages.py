@@ -1,7 +1,7 @@
-from datetime import datetime
 import logging
 import os
 import re
+from datetime import datetime
 from typing import Dict
 
 import git
@@ -16,12 +16,11 @@ class StageHistoryEvent(BaseModel):
     github_url: str | None
     champions: list[str]
     authors: list[str]
-    stage: str
+    status: str
     created_at: datetime
 
 
 class ProposalV1(BaseModel):
-    project_id: int
     proposal_id: str
     stages: list[StageHistoryEvent]
     meeting_notes_locations: set[str]
@@ -30,7 +29,7 @@ class ProposalV1(BaseModel):
 meeting_notes_map = {}
 
 
-def compute_stage_history(project_id: int) -> Dict[str, ProposalV1]:
+def compute_stage_history() -> Dict[str, ProposalV1]:
     """
     Analyzes the history using a local Git repository path using the GitPython library.
     """
@@ -45,7 +44,7 @@ def compute_stage_history(project_id: int) -> Dict[str, ProposalV1]:
 
     repo = git.Repo(repo_path)
 
-    prev_stage_map = {}
+    prev_stage_map: Dict[str, StageHistoryEvent] = {}
     processed = 0
     events = 0
 
@@ -77,7 +76,9 @@ def compute_stage_history(project_id: int) -> Dict[str, ProposalV1]:
             blob = commit.tree / file.path
             md = blob.data_stream.read().decode("utf-8")
 
-            items = parse_markdown(file.path, md, created_at=datetime.fromtimestamp(commits_data[sha]))
+            items = parse_markdown(
+                file.path, md, created_at=datetime.fromtimestamp(commits_data[sha])
+            )
             for item in items:
                 current_map[item.proposal_id] = item
 
@@ -87,16 +88,15 @@ def compute_stage_history(project_id: int) -> Dict[str, ProposalV1]:
             prev_event = prev_stage_map.get(path)
             if not prev_event:
                 add_event = True
-            elif prev_event.stage != event.stage:
+            elif prev_event.status != event.status:
                 add_event = True
 
             if add_event:
                 if event.proposal_id not in proposals:
                     proposals[event.proposal_id] = ProposalV1(
-                        project_id=project_id,
                         proposal_id=event.proposal_id,
                         stages=[],
-                        meeting_notes_locations=[],
+                        meeting_notes_locations=set(),
                     )
                 proposals[event.proposal_id].stages.append(event)
 
@@ -122,7 +122,9 @@ def compute_stage_history(project_id: int) -> Dict[str, ProposalV1]:
     return proposals
 
 
-def parse_markdown(file: str, md_text: str, created_at: datetime) -> list[StageHistoryEvent]:
+def parse_markdown(
+    file: str, md_text: str, created_at: datetime
+) -> list[StageHistoryEvent]:
     """Generic parser: convert markdown to HTML
 
     returns stage events
@@ -267,7 +269,7 @@ def parse_table(table: Tag, created_at: datetime) -> list[StageHistoryEvent]:
                 github_url=github_url,
                 champions=champions,
                 authors=authors,
-                stage=stage,
+                status=stage,
                 created_at=created_at,
             )
         )

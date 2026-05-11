@@ -14,13 +14,22 @@ from db import (
 )
 
 
-def save_proposals_to_db(
-    db_path: Path, proposals: dict[str, Proposal], project_id: int
+def save_to_db(
+    db_path: Path,
+    proposals_v2: dict[str, Proposal],
+    meeting_notes: list[Comment],
+    project_id: int,
 ):
     if db_path.exists():
         db_path.unlink()
-    init_db(db_path)
+    init_db(db_path, start_id=project_id * 1_000_000)
+    save_proposals_to_db(db_path, proposals_v2, project_id)
+    save_comments_to_db(db_path, meeting_notes, project_id)
 
+
+def save_proposals_to_db(
+    db_path: Path, proposals: dict[str, Proposal], project_id: int
+):
     conn = get_connection(db_path)
 
     # Wrap in a single transaction block for performance
@@ -38,18 +47,19 @@ def save_proposals_to_db(
                 conn,
                 project_id,
                 proposal.proposal_id,
-                proposer_id=None,
                 topic=None,
                 proposal_type=None,
             )
             stage_index = 0
             for stage in proposal.stages:
+                normalised_status = get_normalised_status(stage.stage)
                 insert_stage_history(
                     conn,
                     project_id,
                     proposal.proposal_id,
                     stage_index,
                     stage.stage,
+                    normalised_status,
                     stage.created_at,
                 )
                 stage_index += 1
@@ -81,13 +91,9 @@ def save_proposals_to_db(
 
 
 def save_comments_to_db(db_path: Path, comments: list[Comment], project_id: int):
-    if db_path.exists():
-        db_path.unlink()
-    init_db(db_path)
-
     conn = get_connection(db_path)
 
-    comment_map = {}
+    comment_map: dict[int, int] = {}
 
     comments_sorted = sorted(comments, key=lambda c: int(c.message_id))
 
@@ -102,13 +108,24 @@ def save_comments_to_db(db_path: Path, comments: list[Comment], project_id: int)
             )
             comment_id = insert_comment(
                 conn,
-                person_id,
-                project_id,
-                comment_on_comment_id,
-                comment.message_id,
-                comment.date,
-                comment.content,
+                author_id=person_id,
+                project_id=project_id,
+                proposal_id=comment.proposal_id,
+                comment_on_comment_id=comment_on_comment_id,
+                created_at=comment.date,
+                content=comment.content,
             )
             comment_map[comment.message_id] = comment_id
-            
+
     conn.close()
+
+
+def get_normalised_status(raw_status: str) -> str:
+    raw_status = raw_status.lower()
+    if raw_status == "merged":
+        return "accepted"
+    elif raw_status == "closed":
+        return "rejected"
+    elif raw_status == "open":
+        return "draft"
+    raise Exception(f"Unknown raw status: {raw_status}")

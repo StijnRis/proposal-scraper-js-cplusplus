@@ -9,7 +9,8 @@ Project structure
 
 Quick start
 - Inspect the `js/` and `cplusplus/` folders for runnable scripts.
-- Run the Python scripts in those folders to generate output in `output/`.
+- Run the Python scripts `main.py` in those folders to generate output in `output/`.
+- Run the Python test scripts `test_*.py` to validate the outputs.
 
 Acknowledgements
 - Development assisted by GitHub Copilot.

@@ -25,6 +25,7 @@ class Proposal(BaseModel):
 
 
 class Comment(BaseModel):
+    proposal_id: str | None
     message_id: int
     url: str
     reply_to_message_id: int | None = None

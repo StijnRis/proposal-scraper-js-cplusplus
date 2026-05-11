@@ -2,14 +2,11 @@ import asyncio
 import datetime
 import logging
 import re
-from pathlib import Path
 from typing import Optional
 
 import httpx
 from bs4 import BeautifulSoup
-from pydantic import TypeAdapter
 
-from cplusplus.insert_db import save_comments_to_db
 from cplusplus.models import Comment
 
 logging.basicConfig(
@@ -87,6 +84,7 @@ def parse_message_page(url: str, html: str) -> Comment:
             reply_to_message_id = int(link["href"].replace(".php", "").split("/")[-1])
 
     return Comment(
+        proposal_id=None,
         message_id=int(message_id),
         url=url,
         reply_to_message_id=reply_to_message_id,
@@ -106,12 +104,9 @@ async def fetch_and_parse(
         return await asyncio.to_thread(parse_message_page, url, html)
 
 
+async def fetch_all_emails() -> list[Comment]:
 
-async def main_async() -> None:
-    save_path = Path("./cplusplus/output/comments.json")
-    db_path = Path("./cplusplus/output/cplusplus_comments.sqlite3")
     logging.info("Fetching archive index to list months")
-    adapter = TypeAdapter(list[Comment])
 
     start_year = 2019
     start_month = 4
@@ -148,19 +143,4 @@ async def main_async() -> None:
 
     comments: list[Comment] = [c for c in results if c is not None]
 
-    # Serialize to JSON
-    save_path.parent.mkdir(parents=True, exist_ok=True)
-    save_path.write_bytes(adapter.dump_json(comments, indent=2))
-    logging.info(f"Wrote {len(comments)} comments to {save_path}")
-
-    # Validate and save to DB
-    comments = adapter.validate_json(save_path.read_bytes())
-    save_comments_to_db(db_path, comments, project_id=1)
-
-
-def main() -> None:
-    asyncio.run(main_async())
-
-
-if __name__ == "__main__":
-    main()
+    return comments

@@ -14,9 +14,8 @@ from requests.compat import urljoin
 from cplusplus.insert_db import save_proposals_to_db
 from cplusplus.models import Proposal, ProposalRevision
 from tqdm.asyncio import tqdm_asyncio
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
-)
+
+
 
 YEAR_URL_TEMPLATE = "https://www.open-std.org/jtc1/sc22/wg21/docs/papers/{year}/"
 
@@ -540,28 +539,4 @@ def scrape_year(proposals: dict[str, Proposal], year: int):
     raise ValueError(f"Unsupported year format: {year}")
 
 
-def main():
-    start_year = 1992
-    end_year = 2026
-    proposals = {}
 
-    proposals_path = Path("cplusplus/output/proposals.json")
-    db_path = Path("cplusplus/output/cplusplus_proposals.sqlite3")
-
-    adapter = TypeAdapter(Dict[str, Proposal])
-
-    for year in range(start_year, end_year + 1):
-        proposals.update(scrape_year(proposals, year))
-        logging.info(f"After processing {year}, total proposals: {len(proposals)}")
-    asyncio.run(fetch_all_contents())
-
-    json_data = adapter.dump_json(proposals, indent=2)
-    proposals_path.write_bytes(json_data)
-    logging.debug(f"Wrote {len(proposals)} proposals to proposals.json")
-
-    proposals = adapter.validate_json(proposals_path.read_bytes())
-    save_proposals_to_db(db_path, proposals, project_id=1)
-
-
-if __name__ == "__main__":
-    main()

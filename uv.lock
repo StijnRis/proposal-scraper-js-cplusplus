@@ -274,6 +274,17 @@ wheels = [
 ]
 
 [[package]]
+name = "dotenv"
+version = "0.9.9"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "python-dotenv" },
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b2/b7/545d2c10c1fc15e48653c91efde329a790f2eecfbbf2bd16003b5db2bab0/dotenv-0.9.9-py2.py3-none-any.whl", hash = "sha256:29cf74a087b31dafdb5a446b6d7e11cbce8ed2741540e2339c69fbef92c94ce9", size = 1892, upload-time = "2025-02-19T22:15:01.647Z" },
+]
+
+[[package]]
 name = "fonttools"
 version = "4.62.1"
 source = { registry = "https://pypi.org/simple" }
@@ -387,43 +398,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/ce/cc/762dfb036166873f0059f3b7de4565e1b5bc3d6f28a414c13da27e442f99/idna-3.13.tar.gz", hash = "sha256:585ea8fe5d69b9181ec1afba340451fba6ba764af97026f92a91d4eef164a242", size = 194210, upload-time = "2026-04-22T16:42:42.314Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/5d/13/ad7d7ca3808a898b4612b6fe93cde56b53f3034dcde235acb1f0e1df24c6/idna-3.13-py3-none-any.whl", hash = "sha256:892ea0cde124a99ce773decba204c5552b69c3c67ffd5f232eb7696135bc8bb3", size = 68629, upload-time = "2026-04-22T16:42:40.909Z" },
-]
-
-[[package]]
-name = "js-proposals-scraper"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "beautifulsoup4" },
-    { name = "gitpython" },
-    { name = "html5lib" },
-    { name = "httpx" },
-    { name = "markdown" },
-    { name = "matplotlib" },
-    { name = "pydantic" },
-    { name = "pygithub" },
-    { name = "pymupdf" },
-    { name = "python-dotenv" },
-    { name = "requests" },
-    { name = "tenacity" },
-    { name = "tqdm" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "beautifulsoup4", specifier = ">=4.12" },
-    { name = "gitpython", specifier = ">=3.1" },
-    { name = "html5lib", specifier = ">=1.1" },
-    { name = "httpx", specifier = ">=0.28.1" },
-    { name = "markdown", specifier = ">=3.4" },
-    { name = "matplotlib", specifier = ">=3.10.9" },
-    { name = "pydantic", specifier = ">=2.13.3" },
-    { name = "pygithub", specifier = ">=1.58" },
-    { name = "pymupdf", specifier = ">=1.27.2.3" },
-    { name = "python-dotenv", specifier = ">=1.0" },
-    { name = "requests", specifier = ">=2.28" },
-    { name = "tenacity", specifier = ">=8.0" },
-    { name = "tqdm", specifier = ">=4.67.3" },
 ]
 
 [[package]]
@@ -664,6 +638,45 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/c9/e4/4b64a97d71b2a83158134abbb2f5bd3f8a2ea691361282f010998f339ec7/pillow-12.2.0-cp314-cp314t-win32.whl", hash = "sha256:6bb77b2dcb06b20f9f4b4a8454caa581cd4dd0643a08bacf821216a16d9c8354", size = 6482084, upload-time = "2026-04-01T14:45:47.568Z" },
     { url = "https://files.pythonhosted.org/packages/ba/13/306d275efd3a3453f72114b7431c877d10b1154014c1ebbedd067770d629/pillow-12.2.0-cp314-cp314t-win_amd64.whl", hash = "sha256:6562ace0d3fb5f20ed7290f1f929cae41b25ae29528f2af1722966a0a02e2aa1", size = 7225152, upload-time = "2026-04-01T14:45:50.032Z" },
     { url = "https://files.pythonhosted.org/packages/ff/6e/cf826fae916b8658848d7b9f38d88da6396895c676e8086fc0988073aaf8/pillow-12.2.0-cp314-cp314t-win_arm64.whl", hash = "sha256:aa88ccfe4e32d362816319ed727a004423aab09c5cea43c01a4b435643fa34eb", size = 2556579, upload-time = "2026-04-01T14:45:52.529Z" },
+]
+
+[[package]]
+name = "proposals-scraper-js-cplusplus"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "beautifulsoup4" },
+    { name = "dotenv" },
+    { name = "gitpython" },
+    { name = "html5lib" },
+    { name = "httpx" },
+    { name = "markdown" },
+    { name = "matplotlib" },
+    { name = "pydantic" },
+    { name = "pygithub" },
+    { name = "pymupdf" },
+    { name = "python-dotenv" },
+    { name = "requests" },
+    { name = "tenacity" },
+    { name = "tqdm" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "beautifulsoup4", specifier = ">=4.12" },
+    { name = "dotenv", specifier = ">=0.9.9" },
+    { name = "gitpython", specifier = ">=3.1" },
+    { name = "html5lib", specifier = ">=1.1" },
+    { name = "httpx", specifier = ">=0.28.1" },
+    { name = "markdown", specifier = ">=3.4" },
+    { name = "matplotlib", specifier = ">=3.10.9" },
+    { name = "pydantic", specifier = ">=2.13.3" },
+    { name = "pygithub", specifier = ">=1.58" },
+    { name = "pymupdf", specifier = ">=1.27.2.3" },
+    { name = "python-dotenv", specifier = ">=1.0" },
+    { name = "requests", specifier = ">=2.28" },
+    { name = "tenacity", specifier = ">=8.0" },
+    { name = "tqdm", specifier = ">=4.67.3" },
 ]
 
 [[package]]

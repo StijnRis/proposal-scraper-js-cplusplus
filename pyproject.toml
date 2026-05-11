@@ -1,7 +1,7 @@
 [project]
-name = "js-proposals-scraper"
+name = "proposals-scraper-js-cplusplus"
 version = "0.1.0"
-description = "Add your description here"
+description = "A web scraper for JS and C++ enhancement proposals."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -18,4 +18,5 @@ dependencies = [
     "matplotlib>=3.10.9",
     "httpx>=0.28.1",
     "tqdm>=4.67.3",
+    "dotenv>=0.9.9",
 ]

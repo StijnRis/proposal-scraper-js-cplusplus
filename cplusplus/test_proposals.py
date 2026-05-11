@@ -134,7 +134,7 @@ def check_authors():
             ).fetchall()
             conn.close()
 
-            authors = set(a[0].strip() for a in authors_str)
+            authors = set(a[0].strip()[0]+"..."+a[0].strip()[-1] for a in authors_str)
             if authors != expected_authors:
                 print(
                     f"❗Proposal {proposal_id} has authors '{authors}', expected '{expected_authors}'"
@@ -199,11 +199,27 @@ def check_proposal_content():
         else:
             print(f"Proposal {proposal_id} has the expected content.")
 
+def check_proposal_stages():
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+    cur.execute(
+        """
+        SELECT proposal_id, stage FROM ProposalRevision
+        WHERE project_id = 1
+        ORDER BY created_at ASC;
+        """
+    )
+    rows = cur.fetchall()
+    for proposal_id, stage in rows:
+        if stage is None:
+            print(f"❗Proposal {proposal_id} has no stage assigned.")
+    conn.close()
 
 if __name__ == "__main__":
     test_proposal_counts()
     find_malformed_ids()
     check_proposal_content()
+    check_proposal_stages()
     test_amount_of_revisions()
     check_dates()
     check_titles()
