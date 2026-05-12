@@ -20,26 +20,28 @@ def init_db(db_path: Path, start_id: int) -> None:
     conn.close()
     logging.info("Database initialized at %s", db_path)
 
+
 def set_all_autoincrement_starts(conn: sqlite3.Connection, start_id: int) -> None:
     """
-    Resets the auto-increment counter for all primary key tables 
+    Resets the auto-increment counter for all primary key tables
     to begin at the specified start_id.
     """
     # List of tables in your schema that use an internal AUTOINCREMENT ID
     tables = ["Project", "Person", "Organisation", "Comment"]
-    
+
     cur = conn.cursor()
     new_val = start_id - 1
-    
+
     for table in tables:
         # We use INSERT OR REPLACE to handle both new and existing entries in the system table
         cur.execute(
             "INSERT OR REPLACE INTO sqlite_sequence (name, seq) VALUES (?, ?)",
-            (table, new_val)
+            (table, new_val),
         )
-    
+
     conn.commit()
     logging.info("All table auto-increments reset to start at %d", start_id)
+
 
 def get_connection(db_path: Path) -> sqlite3.Connection:
     conn = sqlite3.connect(db_path)
@@ -163,11 +165,32 @@ def insert_or_get_person(conn: sqlite3.Connection, full_name: Optional[str]) -> 
         return cur.lastrowid
 
 
+def insert_if_not_exists_person_username(
+    conn: sqlite3.Connection, person_id: int, domain: str, username: str
+):
+    cur = conn.cursor()
+    cur.execute(
+        "SELECT username FROM PersonUsername WHERE person_id = ? AND domain = ? AND username = ?",
+        (person_id, domain, username),
+    )
+    row = cur.fetchone()
+    if row:
+        return
+    else:
+        cur.execute(
+            "INSERT INTO PersonUsername (person_id, domain, username) VALUES (?, ?, ?)",
+            (person_id, domain, username),
+        )
+        if cur.lastrowid is None:
+            raise Exception("Failed to insert person username, lastrowid is None")
+        return
+
+
 def insert_comment(
     conn: sqlite3.Connection,
     author_id: int,
     project_id: int,
-    proposal_id: str,
+    proposal_id: str | None,
     comment_on_comment_id: Optional[int],
     created_at: Optional[datetime.datetime],
     content: str,

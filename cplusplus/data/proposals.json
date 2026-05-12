@@ -1,3 +1,153 @@
-{
-    "N1339": "C++ Standard Library Closed Issues L...----- End of document -----"
-}
+[
+    {
+        "proposal_id": "N0130",
+        "found_in_list_of_years": [1992],
+        "authors": ["S...l"],
+        "title": "Merging Lvalue and Reference; and Canonicalizing Types",
+        "revisions": [
+            {
+                "date": "1992-01-01 00:00:00"
+            }
+        ]
+    },
+    {
+        "proposal_id": "N0596",
+        "found_in_list_of_years": [1995],
+        "authors": ["D...s"],
+        "title": "Minutes ISO/IEC JTC1/SC22/WG21 Meeting No. 11",
+        "revisions": [
+            {
+                "date": "1995-01-01 00:00:00"
+            }
+        ]
+    },
+    {
+        "proposal_id": "N1268",
+        "found_in_list_of_years": [2000],
+        "authors": ["A...s", "M...d"],
+        "title": "Member Access Control and Nested Classes",
+        "revisions": [
+            {
+                "date": "2000-01-01 00:00:00"
+            }
+        ]
+    },
+    {
+        "proposal_id": "N1288",
+        "found_in_list_of_years": [2001],
+        "authors": ["S...e"],
+        "title": "Agenda, J16 Meeting No.32, WG21 Meeting No. 27, April 30-May 4, 2001 00:00:00",
+        "revisions": [
+            {
+                "date": "2001-01-01 00:00:00"
+            }
+        ]
+    },
+    {
+        "proposal_id": "N1339",
+        "found_in_list_of_years": [2001],
+        "content_url": "https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2001/n1339.html",
+        "content": "C++ Standard Library Closed Issues L...----- End of document -----"
+    },
+    {
+        "proposal_id": "N1344",
+        "found_in_list_of_years": [2002],
+        "authors": ["H...r"],
+        "revisions": [
+            {
+                "date": "2002-03-01 00:00:00"
+            }
+        ]
+    },
+    {
+        "proposal_id": "N1345",
+        "found_in_list_of_years": [2002],
+        "title": "Type Traits Proposal",
+        "revisions": [
+            {
+                "date": "2002-03-07 00:00:00"
+            }
+        ]
+    },
+    {
+        "proposal_id": "N1563",
+        "found_in_list_of_years": [2004],
+        "authors": ["H...r"],
+        "title": "TG5 Liaison Report to WG21",
+        "revisions": [
+            {
+                "date": "2003-12-05 00:00:00"
+            }
+        ]
+    },
+    {
+        "proposal_id": "N1653",
+        "found_in_list_of_years": [2004],
+        "stages": [
+            {
+                "status": "accepted",
+                "date": "2011-08-01 00:00:00"
+            }
+        ]
+    },
+    {
+        "proposal_id": "N3493",
+        "found_in_list_of_years": [2013],
+        "authors": ["J...y"],
+        "title": "Compile-time integer sequences",
+        "revisions": [
+            {
+                "date": "2013-01-11 00:00:00"
+            }
+        ]
+    },
+    {
+        "proposal_id": "P0149",
+        "found_in_list_of_years": [2016, 2025],
+        "authors": ["J...r"],
+        "title": "Generalised member pointers",
+        "revisions": [
+            {
+                "date": "2016-02-12 00:00:00"
+            },
+            {
+                "date": "2025-01-13 00:00:00"
+            },
+            {
+                "date": "2025-05-19 00:00:00"
+            },
+            {
+                "date": "2025-05-19 00:00:00"
+            }
+        ]
+    },
+    {
+        "proposal_id": "P3986",
+        "found_in_list_of_years": [2026],
+        "stages": [
+            {
+                "status": "draft",
+                "date": "2026-04-03 00:00:00"
+            },
+            {
+                "status": "accepted",
+                "date": "2026-04-03 00:00:00"
+            }
+        ]
+    },
+    {
+        "proposal_id": "P4151",
+        "found_in_list_of_years": [2026],
+        "amount_of_revisions": 2
+    },
+    {
+        "proposal_id": "P4149",
+        "found_in_list_of_years": [2026],
+        "amount_of_revisions": 2
+    },
+    {
+        "proposal_id": "P3795",
+        "found_in_list_of_years": [2025, 2026],
+        "amount_of_revisions": 3
+    }
+]

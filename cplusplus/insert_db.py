@@ -5,6 +5,7 @@ from db import (
     get_connection,
     init_db,
     insert_comment,
+    insert_if_not_exists_person_username,
     insert_or_get_person,
     insert_project,
     insert_proposal,
@@ -99,7 +100,8 @@ def save_comments_to_db(db_path: Path, comments: list[Comment], project_id: int)
     # Wrap in a single transaction block for performance
     with conn:
         for comment in comments_sorted:
-            person_id = insert_or_get_person(conn, comment.author_email)
+            person_id = insert_or_get_person(conn, comment.author_name)
+            insert_if_not_exists_person_username(conn, person_id, "email", comment.author_email)
             comment_on_comment_id = (
                 comment_map[comment.reply_to_message_id]
                 if comment.reply_to_message_id
