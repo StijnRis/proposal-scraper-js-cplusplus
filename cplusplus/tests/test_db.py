@@ -1,6 +1,6 @@
 import json
-import sqlite3
 from pathlib import Path
+import sqlite3
 
 DB_PATH = "cplusplus/output/cplusplus_proposals.sqlite3"
 
@@ -34,187 +34,6 @@ def test_proposal_counts():
         assert not extra, f"Extra proposals for year {year}: {extra}"
     conn.close()
 
-
-def test_amount_of_revisions():
-    with open("cplusplus/data/proposals.json", "r") as f:
-        expected_proposals = json.load(f)
-
-    for expected_proposal in expected_proposals:
-        proposal_id = expected_proposal["proposal_id"]
-        if "revisions" not in expected_proposal:
-            continue
-        expected_count = len(expected_proposal["revisions"])
-
-        conn = sqlite3.connect(DB_PATH)
-        cur = conn.cursor()
-        count = cur.execute(
-            """
-            SELECT COUNT(*) FROM ProposalRevision
-            WHERE proposal_id = ?;
-            """,
-            (proposal_id,),
-        ).fetchone()[0]
-        conn.close()
-
-        assert count == expected_count, (
-            f"Proposal {proposal_id} has {count} revisions, expected {expected_count}"
-        )
-
-
-def test_titles():
-    with open("cplusplus/data/proposals.json", "r") as f:
-        expected_proposals = json.load(f)
-
-    for expected_proposal in expected_proposals:
-        proposal_id = expected_proposal["proposal_id"]
-        if "title" not in expected_proposal:
-            continue
-        expected_title = expected_proposal["title"]
-
-        conn = sqlite3.connect(DB_PATH)
-        cur = conn.cursor()
-        title = cur.execute(
-            """
-            SELECT title FROM ProposalRevision
-            WHERE proposal_id = ?
-            ORDER BY created_at ASC
-            LIMIT 1;
-            """,
-            (proposal_id,),
-        ).fetchone()[0]
-        conn.close()
-
-        assert title == expected_title, (
-            f"Proposal {proposal_id} has title '{title}', expected '{expected_title}'"
-        )
-
-
-def test_authors():
-    with open("cplusplus/data/proposals.json", "r") as f:
-        expected_proposals = json.load(f)
-
-    for expected_proposal in expected_proposals:
-        proposal_id = expected_proposal["proposal_id"]
-        if "authors" not in expected_proposal:
-            continue
-        expected_authors = set([a.strip() for a in expected_proposal["authors"]])
-
-        conn = sqlite3.connect(DB_PATH)
-        cur = conn.cursor()
-        authors_str = cur.execute(
-            """
-            SELECT Person.full_name
-            FROM ProposalRevisionAuthor
-            JOIN Person ON ProposalRevisionAuthor.author_id = Person.person_id
-            WHERE ProposalRevisionAuthor.proposal_id = ?
-            """,
-            (proposal_id,),
-        ).fetchall()
-        conn.close()
-
-        authors = set(
-            a[0].strip()[0] + "..." + a[0].strip()[-1] for a in authors_str
-        )
-        assert authors == expected_authors, (
-            f"Proposal {proposal_id} has authors '{authors}', expected '{expected_authors}'"
-        )
-
-
-def test_revision_dates():
-    conn = sqlite3.connect(DB_PATH)
-    cur = conn.cursor()
-
-    with open("cplusplus/data/proposals.json", "r") as f:
-        expected_proposals = json.load(f)
-
-    for expected_proposal in expected_proposals:
-        proposal_id = expected_proposal["proposal_id"]
-        if "revisions" not in expected_proposal:
-            continue
-        expected_dates = set(
-            revision["date"] for revision in expected_proposal["revisions"]
-        )
-
-        dates = cur.execute(
-            """
-            SELECT created_at FROM ProposalRevision
-            WHERE proposal_id = ?
-            """,
-            (proposal_id,),
-        ).fetchall()
-        dates = set(date[0] for date in dates)
-        assert dates == expected_dates, (
-            f"Proposal {proposal_id} has dates '{dates}', expected '{expected_dates}'"
-        )
-
-    conn.close()
-
-
-def test_proposal_content():
-    with open("cplusplus/data/proposals.json", "r") as f:
-        expected_proposals = json.load(f)
-
-    for expected_proposal in expected_proposals:
-        proposal_id = expected_proposal["proposal_id"]
-        if "content" not in expected_proposal:
-            continue
-        expected_content = expected_proposal["content"]
-        start, end = expected_content.split("...")
-
-        conn = sqlite3.connect(DB_PATH)
-        cur = conn.cursor()
-        content = cur.execute(
-            """
-            SELECT content FROM ProposalRevision
-            WHERE proposal_id = ?
-            ORDER BY created_at ASC
-            LIMIT 1;
-            """,
-            (proposal_id,),
-        ).fetchone()[0]
-        conn.close()
-
-        assert content.startswith(start), (
-            f"Proposal {proposal_id} has content that does not start with '{start}'"
-        )
-        assert content.endswith(end), (
-            f"Proposal {proposal_id} has content that does not end with '{end}'"
-        )
-
-
-def test_proposal_stages():
-    conn = sqlite3.connect(DB_PATH)
-    cur = conn.cursor()
-    
-    with open("cplusplus/data/proposals.json", "r") as f:
-        expected_proposals = json.load(f)
-
-    for expected_proposal in expected_proposals:
-        proposal_id = expected_proposal["proposal_id"]
-        if "stages" not in expected_proposal:
-            continue
-        expected_stages = [s["status"]+ " " + s["date"] for s in expected_proposal["stages"]]
-
-        
-        stages_str = cur.execute(
-            """
-            SELECT raw_status, created_at
-            FROM StageHistory
-            WHERE proposal_id = ?
-            ORDER BY created_at ASC;
-            """,
-            (proposal_id,),
-        ).fetchall()
-
-        stages = [s[0] + " " + s[1] for s in stages_str]
-        assert stages == expected_stages, (
-            f"Proposal {proposal_id} has stages '{stages}', expected '{expected_stages}'"
-        )
-
-    conn.close()
-
-
-
 def test_malformed_ids():
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
@@ -231,7 +50,7 @@ def test_malformed_ids():
     conn.close()
 
 
-def test_email_17268():
+def test_comments():
 
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()

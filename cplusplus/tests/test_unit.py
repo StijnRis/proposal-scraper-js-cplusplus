@@ -83,7 +83,7 @@ def test_proposals():
                 )
                 dates = set()
                 for revision in proposal.revisions:
-                    dates.add(revision.created_at.strftime("%Y-%m-%d"))
+                    dates.add(revision.created_at.strftime("%Y-%m-%d %H:%M:%S"))
                 assert dates == expected_dates, (
                     f"Proposal {proposal_id} has dates '{dates}', expected '{expected_dates}'"
                 )
@@ -112,7 +112,7 @@ def test_content():
                 )
 
 
-def test_emails():
+def test_comments():
     with open("cplusplus/data/comments.json", "r", encoding="utf-8") as f:
         comments = json.load(f)
         for expected_comment in comments:
