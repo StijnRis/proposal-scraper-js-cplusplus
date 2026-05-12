@@ -25,7 +25,7 @@ def main():
     proposals_path = Path("cplusplus/output/proposals.json")
     proposals_with_stages_path = Path("cplusplus/output/proposals_with_stages.json")
     comments_path = Path("./cplusplus/output/comments.json")
-    db_path = Path("cplusplus/output/cplusplus.sqlite3")
+    db_path = Path("cplusplus/output/cplusplus_proposals.sqlite3")
 
     adapter = TypeAdapter(Dict[str, Proposal])
     adapter_comments = TypeAdapter(list[Comment])
@@ -48,6 +48,7 @@ def main():
             adapter.dump_json(proposals_with_stages, indent=2)
         )
 
+    if not comments_path.exists():
         logging.info("Fetching and parsing emails...")
         comments = asyncio.run(fetch_all_emails())
         comments_path.write_bytes(adapter_comments.dump_json(comments, indent=2))

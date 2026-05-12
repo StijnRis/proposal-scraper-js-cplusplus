@@ -110,7 +110,7 @@ CREATE TABLE Comment (
     comment_id INTEGER PRIMARY KEY AUTOINCREMENT,
     author_id INTEGER NOT NULL,
     project_id INTEGER NOT NULL,
-    proposal_id TEXT NOT NULL,
+    proposal_id TEXT,
     comment_on_comment_id INTEGER,
     -- id of parent comment, null if root comment (discussion, issue, pr, etc.)
     created_at DATETIME NOT NULL CHECK (datetime(created_at) IS NOT NULL),

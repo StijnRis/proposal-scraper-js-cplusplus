@@ -246,6 +246,7 @@ def parse_table(table: Tag, created_at: datetime) -> list[StageHistoryEvent]:
                 "stage 0",
                 "stage 1",
                 "stage 2",
+                "stage 2.7",
                 "stage 3",
                 "stage 4",
                 "inactive proposals",

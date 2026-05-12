@@ -55,12 +55,12 @@ def save_proposals_to_db(
                 normalised_status = get_normalised_status(stage.stage)
                 insert_stage_history(
                     conn,
-                    project_id,
-                    proposal.proposal_id,
-                    stage_index,
-                    stage.stage,
-                    normalised_status,
-                    stage.created_at,
+                    project_id=project_id,
+                    proposal_id=proposal.proposal_id,
+                    stage_index=stage_index,
+                    raw_status=stage.stage,
+                    normalised_status=normalised_status,
+                    created_at=stage.created_at,
                 )
                 stage_index += 1
             sorted_revisions = sorted(proposal.revisions, key=lambda r: r.created_at)
@@ -68,23 +68,22 @@ def save_proposals_to_db(
             for revision in sorted_revisions:
                 insert_proposal_revision(
                     conn,
-                    project_id,
-                    revision.proposal_id,
-                    index_number,
-                    revision.title,
-                    revision.created_at,
-                    revision.content,
-                    None,
+                    project_id=project_id,
+                    proposal_id=revision.proposal_id,
+                    revision_index=index_number,
+                    title=revision.title,
+                    created_at=revision.created_at,
+                    content=revision.content,
                 )
                 index_number += 1
                 for author in set(revision.authors):
                     person_id = insert_or_get_person(conn, author)
                     insert_proposal_revision_author(
                         conn,
-                        project_id,
-                        revision.proposal_id,
-                        index_number,
-                        person_id,
+                        project_id=project_id,
+                        proposal_id=revision.proposal_id,
+                        revision_index=index_number,
+                        person_id=person_id,
                     )
 
     conn.close()
@@ -128,4 +127,6 @@ def get_normalised_status(raw_status: str) -> str:
         return "rejected"
     elif raw_status == "open":
         return "draft"
+    elif raw_status == "accepted":
+        return "accepted"
     raise Exception(f"Unknown raw status: {raw_status}")

@@ -1,5 +1,5 @@
 # site https://cppreference.com/cpp/compiler_support/11
-N1653 2011-08-01 merged
+N1653 2011-08-01 accepted
 # github
-P0149 2025-01-14 open
-P3986 2026-04-03 open 2026-04-03 closed 2026-04-03 merged
+P0149 2025-01-14 08:16:32 open
+P3986 2026-04-03 00:00:00 open 2026-04-03 00:00:00 closed 2026-04-03 00:00:00 merged

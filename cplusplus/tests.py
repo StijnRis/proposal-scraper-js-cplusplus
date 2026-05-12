@@ -1,5 +1,11 @@
+from datetime import datetime
+import json
 import sqlite3
 from pathlib import Path
+
+import requests
+
+from cplusplus.emails import parse_message_page
 
 DB_PATH = "cplusplus/output/cplusplus_proposals.sqlite3"
 
@@ -16,7 +22,7 @@ def test_proposal_counts():
         proposal_names = cur.execute(
             """
             SELECT proposal_id FROM ProposalRevision
-            WHERE project_id = 1 AND strftime('%Y', created_at) = ?;
+            WHERE strftime('%Y', created_at) = ?;
             """,
             (str(year),),
         ).fetchall()
@@ -49,7 +55,7 @@ def test_amount_of_revisions():
             count = cur.execute(
                 """
                 SELECT COUNT(*) FROM ProposalRevision
-                WHERE project_id = 1 AND proposal_id = ?;
+                WHERE proposal_id = ?;
                 """,
                 (proposal_id,),
             ).fetchone()[0]
@@ -71,7 +77,7 @@ def find_malformed_ids():
     cur.execute(
         """
         SELECT * FROM Proposal
-        WHERE project_id = 1 AND NOT (proposal_id GLOB 'N[0-9][0-9][0-9][0-9]' OR proposal_id GLOB 'P[0-9][0-9][0-9][0-9]' OR proposal_id GLOB 'P[0-9][0-9][0-9][0-9]R[0-9]');
+        WHERE NOT (proposal_id GLOB 'N[0-9][0-9][0-9][0-9]' OR proposal_id GLOB 'P[0-9][0-9][0-9][0-9]' OR proposal_id GLOB 'P[0-9][0-9][0-9][0-9]R[0-9]');
         """
     )
     rows = cur.fetchall()
@@ -97,7 +103,7 @@ def check_titles():
             title = cur.execute(
                 """
                 SELECT title FROM ProposalRevision
-                WHERE project_id = 1 AND proposal_id = ?
+                WHERE proposal_id = ?
                 ORDER BY created_at ASC
                 LIMIT 1;
                 """,
@@ -128,7 +134,7 @@ def check_authors():
                 SELECT Person.full_name
                 FROM ProposalRevisionAuthor
                 JOIN Person ON ProposalRevisionAuthor.author_id = Person.person_id
-                WHERE ProposalRevisionAuthor.proposal_id = ? AND ProposalRevisionAuthor.project_id = 1
+                WHERE ProposalRevisionAuthor.proposal_id = ?
                 """,
                 (proposal_id,),
             ).fetchall()
@@ -156,7 +162,7 @@ def check_dates():
             date = cur.execute(
                 """
                 SELECT created_at FROM ProposalRevision
-                WHERE project_id = 1 AND proposal_id = ? AND revision_index = ?
+                WHERE proposal_id = ? AND revision_index = ?
                 ORDER BY created_at ASC
                 LIMIT 1;
                 """,
@@ -173,18 +179,17 @@ def check_dates():
 
 def check_proposal_content():
     # get all files in proposals directory
-    files = list(Path("cplusplus/data/proposals").glob("*.txt"))
-    for file in files:
-        proposal_id = file.stem
-        with open(file, "r") as f:
-            expected_content = f.read().strip()
+    with open("cplusplus/data/proposals.json", "r") as f:
+        proposals = json.load(f)
+    for proposal_id, expected_content in proposals.items():
+        start, end = expected_content.split("...")
 
         conn = sqlite3.connect(DB_PATH)
         cur = conn.cursor()
         content = cur.execute(
             """
             SELECT content FROM ProposalRevision
-            WHERE project_id = 1 AND proposal_id = ?
+            WHERE proposal_id = ?
             ORDER BY created_at ASC
             LIMIT 1;
             """,
@@ -192,35 +197,84 @@ def check_proposal_content():
         ).fetchone()[0]
         conn.close()
 
-        if content != expected_content:
+        if not content.startswith(start) or not content.endswith(end):
             print(
                 f"❗Proposal {proposal_id} has content that does not match the expected content."
             )
         else:
             print(f"Proposal {proposal_id} has the expected content.")
 
-def check_proposal_stages():
+def test_proposal_stages():
+    with open("cplusplus/data/stages.txt", "r") as f:
+        for line in f:
+            if line[0] == "#":
+                continue
+            proposal_id, expected_stages = line.strip().split(" ", 1)
+            expected_stages = [s.strip() for s in expected_stages.split(",")]
+
+            conn = sqlite3.connect(DB_PATH)
+            cur = conn.cursor()
+            stages_str = cur.execute(
+                """
+                SELECT raw_status, created_at
+                FROM StageHistory
+                WHERE proposal_id = ?
+                ORDER BY created_at ASC;
+                """,
+                (proposal_id,),
+            ).fetchall()
+            conn.close()
+
+            stages = [s[1] + " " + s[0].strip() for s in stages_str]
+            if stages != expected_stages:
+                print(
+                    f"❗Proposal {proposal_id} has stages '{stages}', expected '{expected_stages}'"
+                )
+            else:
+                print(f"Proposal {proposal_id} has the expected stages: '{stages}'")
+
+def test_email_17268():
+    response = requests.get("https://lists.isocpp.org/std-proposals/2026/02/17268.php")
+    html = response.text
+    comment = parse_message_page(
+        "https://lists.isocpp.org/std-proposals/2026/02/17268.php", html
+    )
+    assert comment.message_id == 17268
+    assert comment.reply_to_message_id == 17267
+    assert comment.author_name[0] == "A"
+    assert comment.author_name[-1] == "r"
+    assert comment.author_email[0] == "a"
+    assert comment.author_email[-1] == "]"
+    assert comment.date == datetime(2026, 2, 27, 16, 32, 2)
+    assert comment.content.startswith("On Fri, Feb 27, 2026 at ")
+    assert comment.content.endswith("–Arthur")
+
+
+def check_all_number_exist():
+    # get all ids from database, then check if ther are any missing numbers in the sequence
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
-    cur.execute(
+    ids = cur.execute(
         """
-        SELECT proposal_id, stage FROM ProposalRevision
-        WHERE project_id = 1
-        ORDER BY created_at ASC;
+        SELECT comment_id FROM Comment
+        ORDER BY comment_id ASC;
         """
-    )
-    rows = cur.fetchall()
-    for proposal_id, stage in rows:
-        if stage is None:
-            print(f"❗Proposal {proposal_id} has no stage assigned.")
+    ).fetchall()
     conn.close()
+    ids = [id[0] for id in ids]
+    for i in range(ids[0], ids[-1] + 1):
+        if i not in ids:
+            print(f"❗Missing comment id {i}")
+
 
 if __name__ == "__main__":
     test_proposal_counts()
     find_malformed_ids()
     check_proposal_content()
-    check_proposal_stages()
     test_amount_of_revisions()
     check_dates()
     check_titles()
     check_authors()
+    test_proposal_stages()
+    test_email_17268()
+    check_all_number_exist()
