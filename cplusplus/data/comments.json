@@ -1,0 +1,20 @@
+[
+    {
+        "url": "https://lists.isocpp.org/std-proposals/2026/02/17268.php",
+        "message_id": 17268,
+        "reply_to_message_id": 17267,
+        "author_name": {
+            "starts_with": "A",
+            "ends_with": "r"
+        },
+        "author_email": {
+            "starts_with": "a",
+            "ends_with": "]"
+        },
+        "date": "2026-02-27 16:32:02",
+        "content": {
+            "starts_with": "On Fri, Feb 27, 2026 at ",
+            "ends_with": "r"
+        }
+    }
+]
