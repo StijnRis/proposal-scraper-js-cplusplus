@@ -11,18 +11,17 @@ CREATE TABLE Person (
     person_id INTEGER PRIMARY KEY AUTOINCREMENT,
     full_name TEXT
 );
+CREATE TABLE PersonIdentifier (
+    person_id INTEGER NOT NULL,
+    domain TEXT NOT NULL,  -- eg “github.com”, “git_author” (where was the ID sourced from?)
+    identifier_type TEXT NOT NULL,  – eg “email”, “username”, “display_name” (what kind of ID is it?)
+    identifier TEXT NOT NULL,  --  e.g. “stijn@example.com”
+    PRIMARY KEY (person_id, domain, identifier_type, identifier),
+    FOREIGN KEY (person_id) REFERENCES Person(person_id)
+);
 CREATE TABLE Organisation (
     organisation_id INTEGER PRIMARY KEY AUTOINCREMENT,
     organisation_name TEXT NOT NULL
-);
-CREATE TABLE PersonUsername (
-    person_id INTEGER NOT NULL,
-    domain TEXT,
-    -- eg “github.com”, “email”
-    username TEXT,
-    --  e.g. “stijn@tudelft.nl”
-    PRIMARY KEY (person_id, domain, username),
-    FOREIGN KEY (person_id) REFERENCES Person(person_id)
 );
 CREATE TABLE Affiliation (
     organisation_id INTEGER,
@@ -38,30 +37,27 @@ CREATE TABLE Proposal (
     topic TEXT,
     proposal_type TEXT,
     PRIMARY KEY (project_id, proposal_id),
-    FOREIGN KEY (project_id) REFERENCES Project(project_id)
+    FOREIGN KEY (project_id) REFERENCES Project(project_id),
 );
 -- 4. Revisions & Authorship
-CREATE TABLE StageHistory (
+CREATE TABLE ProposalStatus (
     project_id INTEGER,
     proposal_id TEXT,
-    stage_index INTEGER,
-    -- stage_index increments on raw_status change
+    status_index INTEGER,  -- status_index increments on raw_status change
     raw_status TEXT NOT NULL,
     normalised_status TEXT NOT NULL CHECK (
         normalised_status IN (
-            'accepted',
-            'rejected',
-            'draft',
-            'review',
-            'withdrawn',
-            'superseded',
-            'active',
+            'accepted', -- Ready to be implemented (or already implemented)
+            'rejected', -- Not going to be implemented
+            'draft', -- Incomplete
+            'review', -- Complete, waiting for review
+            'withdrawn', -- Withdrawn by proposal author
+            'superseded',  -- Outdated, replaced by another proposal
             'unknown'
         )
     ),
-    -- superseded -> rejected, null or not clear -> unknown
     created_at DATETIME NOT NULL CHECK (datetime(created_at) IS NOT NULL),
-    PRIMARY KEY (project_id, proposal_id, stage_index),
+    PRIMARY KEY (project_id, proposal_id, status_index),
     FOREIGN KEY (project_id, proposal_id) REFERENCES Proposal(project_id, proposal_id)
 );
 CREATE TABLE ProposalRevision (

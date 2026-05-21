@@ -1,0 +1,35 @@
+# Use the official, optimized uv image
+image: ghcr.io/astral-sh/uv:latest
+
+variables:
+  # Enable caching for uv to make subsequent pipeline runs lightning-fast
+  UV_CACHE_DIR: ".uv-cache"
+
+# Cache the uv directory across pipeline runs
+cache:
+  key:
+    files:
+      - uv.lock
+  paths:
+    - .uv-cache/
+
+# Define the steps (stages) of our pipeline
+stages:
+  - lint
+  - test
+
+# Job 1: Check code formatting and linting with Ruff
+ruff-check:
+  stage: lint
+  script:
+    # --check ensures the pipeline fails if code isn't formatted properly
+    - uv run ruff format --check
+    - uv run ruff check
+
+# Job 2: Run pytest
+run-tests:
+  stage: test
+  script:
+    # uv sync ensures all dependencies (including pytest-xdist) are installed
+    - uv sync
+    - uv run pytest

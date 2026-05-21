@@ -89,6 +89,7 @@ def parse_message_page(url: str, html: str) -> Comment:
         url=url,
         reply_to_message_id=reply_to_message_id,
         author_name=author_name,
+        source_domain="isocpp.org",
         author_email=author_email,
         date=date,
         content=content,

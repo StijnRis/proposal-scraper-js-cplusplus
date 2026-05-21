@@ -50,7 +50,9 @@ def main():
     if not meeting_mapping_path.exists():
         logging.info("Finding meeting notes")
         mapping = build_mapping()
-        meeting_mapping_path.write_bytes(adapter_meetings_map.dump_json(mapping, indent=2))
+        meeting_mapping_path.write_bytes(
+            adapter_meetings_map.dump_json(mapping, indent=2)
+        )
 
     if not db_path.exists():
         logging.info("Saving to database")

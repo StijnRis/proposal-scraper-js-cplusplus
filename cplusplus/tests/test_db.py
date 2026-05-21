@@ -1,6 +1,6 @@
 import json
-from pathlib import Path
 import sqlite3
+from pathlib import Path
 
 DB_PATH = "cplusplus/output/cplusplus_proposals.sqlite3"
 
@@ -34,6 +34,7 @@ def test_proposal_counts():
         assert not extra, f"Extra proposals for year {year}: {extra}"
     conn.close()
 
+
 def test_malformed_ids():
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
@@ -55,7 +56,7 @@ def test_comments():
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
 
-    with open("cplusplus/data/comments.json", "r", encoding="utf-8") as f:
+    with open("cplusplus/tests/data/comments.json", "r", encoding="utf-8") as f:
         comments = json.load(f)
     for expected_comment in comments:
         comment = cur.execute(

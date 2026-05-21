@@ -1,6 +1,6 @@
-from datetime import datetime
 import logging
 import os
+from datetime import datetime
 from typing import Dict
 
 import git
@@ -54,7 +54,7 @@ def fetch_revisions(proposals_v1: Dict[str, proposal_stages.ProposalV1]):
         full = f"{owner}/{repo}"
         clean_repo_url = f"https://github.com/{full}"
 
-        # Clone the repo if not already present in data/repos
+        # Clone the repo if not already present in tests/data/repos
         repo_path = f"./js/output/repos/{owner}_{repo}"
         if not os.path.exists(repo_path):
             try:

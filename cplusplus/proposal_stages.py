@@ -23,7 +23,9 @@ def _parse_iso(dt: str | None) -> datetime.datetime:
     return datetime.datetime.fromisoformat(dt.replace("Z", "+00:00"))
 
 
-def add_proposal_stages_from_github(proposals: dict[str, Proposal]) -> dict[str, Proposal]:
+def add_proposal_stages_from_github(
+    proposals: dict[str, Proposal],
+) -> dict[str, Proposal]:
     """
     Fetch issues/PRs from cplusplus/papers and attach StageEvent entries.
     Uses GITHUB_TOKEN from .env to increase rate limits.
@@ -77,18 +79,24 @@ def add_proposal_stages_from_github(proposals: dict[str, Proposal]) -> dict[str,
             base_id = m.group(1).lower()
 
             created_at = _parse_iso(issue["created_at"])
-            ev_open = StageEvent(proposal_id=base_id, created_at=created_at, stage="open")
+            ev_open = StageEvent(
+                proposal_id=base_id, created_at=created_at, stage="open"
+            )
             events_map.setdefault(base_id, []).append(ev_open)
 
             status = issue["state"]
             if status == "closed":
                 closed_at = _parse_iso(issue["closed_at"])
-                ev_closed = StageEvent(proposal_id=base_id, created_at=closed_at, stage="closed")
+                ev_closed = StageEvent(
+                    proposal_id=base_id, created_at=closed_at, stage="closed"
+                )
                 events_map.setdefault(base_id, []).append(ev_closed)
 
             if "pull_request" in issue:
                 closed_at = _parse_iso(issue["closed_at"])
-                ev_closed = StageEvent(proposal_id=base_id, created_at=closed_at, stage="merged")
+                ev_closed = StageEvent(
+                    proposal_id=base_id, created_at=closed_at, stage="merged"
+                )
                 events_map.setdefault(base_id, []).append(ev_closed)
 
         page += 1
@@ -103,14 +111,25 @@ def add_proposal_stages_from_github(proposals: dict[str, Proposal]) -> dict[str,
     return proposals
 
 
-def add_proposal_stages_from_cpp_reference(proposals: dict[str, Proposal]) -> dict[str, Proposal]:
+def add_proposal_stages_from_cpp_reference(
+    proposals: dict[str, Proposal],
+) -> dict[str, Proposal]:
     versions = [11, 14, 17, 20, 23, 26]
-    dates = [datetime.datetime(2011, 8, 1), datetime.datetime(2014, 8, 1), datetime.datetime(2017, 12, 1), datetime.datetime(2020, 12, 15), datetime.datetime(2024, 10, 1), datetime.datetime(2026, 3, 1)]
+    dates = [
+        datetime.datetime(2011, 8, 1),
+        datetime.datetime(2014, 8, 1),
+        datetime.datetime(2017, 12, 1),
+        datetime.datetime(2020, 12, 15),
+        datetime.datetime(2024, 10, 1),
+        datetime.datetime(2026, 3, 1),
+    ]
 
     events_map: Dict[str, List[StageEvent]] = {}
     for version, date in zip(versions, dates):
         # Fetch content
-        with open(f"cplusplus/data/cppreference/{version}.html", "r", encoding="utf-8") as f:
+        with open(
+            f"cplusplus/tests/data/cppreference/{version}.html", "r", encoding="utf-8"
+        ) as f:
             content = f.read()
 
         # Find all proposal IDs in the content
@@ -118,9 +137,7 @@ def add_proposal_stages_from_cpp_reference(proposals: dict[str, Proposal]) -> di
         proposal_id_re = re.compile(r"([PN]\d+)(?:\s*R\d+)?", re.IGNORECASE)
         for match in proposal_id_re.finditer(content):
             base_id = match.group(1).lower()
-            ev = StageEvent(
-                proposal_id=base_id, created_at=date, stage="accepted"
-            )
+            ev = StageEvent(proposal_id=base_id, created_at=date, stage="accepted")
             events_map.setdefault(base_id, []).append(ev)
 
     # Update proposal objects with sorted events
@@ -131,6 +148,7 @@ def add_proposal_stages_from_cpp_reference(proposals: dict[str, Proposal]) -> di
             p.stages = sorted(events_map[pid_key], key=lambda e: e.created_at)
 
     return proposals
+
 
 def add_proposal_stages(proposals: dict[str, Proposal]) -> dict[str, Proposal]:
     proposals = add_proposal_stages_from_github(proposals)

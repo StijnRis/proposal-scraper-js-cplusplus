@@ -22,3 +22,8 @@ dependencies = [
     "pytest>=9.0.3",
     "pytest-cov>=7.1.0",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.13",
+]

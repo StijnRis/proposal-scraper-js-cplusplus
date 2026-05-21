@@ -30,6 +30,7 @@ class Comment(BaseModel):
     url: str
     reply_to_message_id: int | None = None
     author_name: str
+    source_domain: str
     author_email: str
     date: datetime.datetime
     content: str

@@ -3,10 +3,10 @@ from pathlib import Path
 from typing import List
 
 from db import (
+    ensure_person,
     get_connection,
     init_db,
     insert_comment,
-    insert_or_get_person,
     insert_project,
     insert_proposal,
     insert_proposal_revision,
@@ -77,7 +77,7 @@ def save_to_db(
                     implemented_at_version=revision.implemented_at_version,
                 )
                 if revision.author:
-                    person_id = insert_or_get_person(conn, revision.author)
+                    person_id = ensure_person(conn, revision.author)
                     insert_proposal_revision_author(
                         conn,
                         project_id=project_id,
@@ -99,7 +99,8 @@ def save_to_db(
                 previous_note_id = None
                 index = 0
                 for note in sorted_notes:
-                    author_id = insert_or_get_person(conn, note.author)
+                    author_id = ensure_person(conn, note.author)
+                    # No email attached
                     previous_note_id = insert_comment(
                         conn,
                         author_id=author_id,

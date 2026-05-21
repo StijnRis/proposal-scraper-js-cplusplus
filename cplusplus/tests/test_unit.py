@@ -38,7 +38,7 @@ def test_proposal_counts():
 
 
 def test_proposals():
-    with open("cplusplus/data/proposals.json", "r") as f:
+    with open("cplusplus/tests/data/proposals.json", "r") as f:
         expected_proposals = json.load(f)
         for expected_proposal in expected_proposals:
             proposal_id = expected_proposal["proposal_id"]
@@ -95,7 +95,7 @@ def test_stages():
 
 
 def test_content():
-    with open("cplusplus/data/proposals.json", "r") as f:
+    with open("cplusplus/tests/data/proposals.json", "r") as f:
         expected_proposals = json.load(f)
         for expected_proposal in expected_proposals:
             proposal_id = expected_proposal["proposal_id"]
@@ -113,7 +113,7 @@ def test_content():
 
 
 def test_comments():
-    with open("cplusplus/data/comments.json", "r", encoding="utf-8") as f:
+    with open("cplusplus/tests/data/comments.json", "r", encoding="utf-8") as f:
         comments = json.load(f)
         for expected_comment in comments:
             url = expected_comment["url"]

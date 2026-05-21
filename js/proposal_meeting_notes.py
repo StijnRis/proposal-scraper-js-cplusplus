@@ -187,11 +187,11 @@ def parse_table(md: str) -> Dict[str, str]:
     if start_index is None:
         return {}
     header = lines[start_index]
-    
+
     # Table rows follow header and a separator (---|---)
     # Collect rows while they start with '|'
     rows = []
-    for line in lines[start_index + 2:]:
+    for line in lines[start_index + 2 :]:
         if not line.strip().startswith("|"):
             break
         rows.append(line)

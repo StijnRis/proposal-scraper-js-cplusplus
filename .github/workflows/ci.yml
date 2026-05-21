@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+variables:
+  # Enable caching for uv to make subsequent pipeline runs lightning-fast
+  UV_CACHE_DIR: ".uv-cache"
+
+jobs:
+  # Job 1: Check code formatting and linting with Ruff
+  ruff-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          # Automatically caches the uv cache directory based on uv.lock
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Run Ruff Lint & Format Check
+        run: |
+          # --check ensures the pipeline fails if code isn't formatted properly
+          uv run ruff format --check
+          uv run ruff check
+
+  # Job 2: Run pytest
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Run Tests
+        run: |
+          # uv sync ensures all dependencies are installed
+          uv sync
+          uv run pytest

@@ -2,8 +2,8 @@ import datetime
 import json
 import sqlite3
 
-
 DB_PATH = "./js/output/js_proposals.sqlite3"
+
 
 def test_temporal_proposal():
     conn = sqlite3.connect(DB_PATH)
@@ -17,7 +17,9 @@ def test_temporal_proposal():
     ).fetchone()
     assert proposal is not None, "Temporal proposal not found in database"
     assert proposal[0] == 3
-    assert proposal[1] == "Temporal", f"Expected proposal_id 'Temporal', got '{proposal[1]}'"
+    assert proposal[1] == "Temporal", (
+        f"Expected proposal_id 'Temporal', got '{proposal[1]}'"
+    )
     assert proposal[2] == None
     assert proposal[3] == None
 
@@ -32,11 +34,13 @@ def test_temporal_proposal():
 
     assert proposalRevisions[-1][0] == 3
     assert proposalRevisions[-1][1] == "Temporal"
-    assert proposalRevisions[-1][2] != None 
+    assert proposalRevisions[-1][2] != None
     assert proposalRevisions[-1][3] == "Temporal"
     assert proposalRevisions[-1][4] == "2026-04-03 09:23:09-07:00"
     assert proposalRevisions[-1][5].startswith("<!DOCTYPE html>")
-    assert proposalRevisions[-1][5].endswith('<emu-import href="spec/intl.html"></emu-import>\n')
+    assert proposalRevisions[-1][5].endswith(
+        '<emu-import href="spec/intl.html"></emu-import>\n'
+    )
 
     comments = cur.execute(
         """
@@ -66,7 +70,7 @@ def test_temporal_proposal():
 
     stageHistory = cur.execute(
         """
-        SELECT * FROM StageHistory
+        SELECT * FROM ProposalStatus
         WHERE proposal_id = 'Temporal'
         ORDER BY created_at ASC;
         """
@@ -87,13 +91,15 @@ def test_meeting_notes():
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
 
-    with open("js/data/comments.json", "r", encoding="utf-8") as f:
+    with open("js/tests/data/comments.json", "r", encoding="utf-8") as f:
         meeting_notes = json.load(f)
 
     for meeting_note in meeting_notes:
         proposal_id = meeting_note["proposal_id"]
         true_comments = meeting_note["comments"]
-        date_obj = datetime.datetime.fromisoformat(meeting_note["date"].rstrip("Z")) - datetime.timedelta(days=1)
+        date_obj = datetime.datetime.fromisoformat(
+            meeting_note["date"].rstrip("Z")
+        ) - datetime.timedelta(days=1)
         date_str = date_obj.isoformat()
 
         # get comments from the proposal
@@ -103,7 +109,7 @@ def test_meeting_notes():
             WHERE proposal_id = ? AND created_at >= ?
             ORDER BY created_at ASC;
             """,
-            (proposal_id,date_str),
+            (proposal_id, date_str),
         ).fetchall()
 
         # check if the comment content matches the meeting note content
@@ -120,14 +126,16 @@ def test_meeting_notes():
                 """,
                 (author_id,),
             ).fetchone()[0]
-            assert author[0] == true_comment["author"], f"Comment author does not match for proposal {proposal_id} at index {index}"
-            assert true_comment["content"] == comment[1], f"Comment content does not match for proposal {proposal_id} at index {index}"
+            assert author[0] == true_comment["author"], (
+                f"Comment author does not match for proposal {proposal_id} at index {index}"
+            )
+            assert true_comment["content"] == comment[1], (
+                f"Comment content does not match for proposal {proposal_id} at index {index}"
+            )
 
     conn.close()
-
 
 
 if __name__ == "__main__":
     test_temporal_proposal()
     test_meeting_notes()
-    

@@ -1,6 +1,5 @@
 import json
 import sqlite3
-from pathlib import Path
 
 CPLUSPLUS_DB_PATH = "cplusplus/output/cplusplus_proposals.sqlite3"
 JS_DB_PATH = "js/output/js_proposals.sqlite3"
@@ -21,7 +20,6 @@ def test():
     print(rows)
 
 
-
 def test_js_amount_of_revisions():
     check_amount_of_revisions("js")
 
@@ -34,7 +32,7 @@ def check_amount_of_revisions(project: str):
     conn = sqlite3.connect(f"{project}/output/{project}_proposals.sqlite3")
     cur = conn.cursor()
 
-    with open(f"{project}/data/proposals.json", "r") as f:
+    with open(f"{project}/tests/data/proposals.json", "r") as f:
         expected_proposals = json.load(f)
 
     for expected_proposal in expected_proposals:
@@ -69,7 +67,7 @@ def check_titles(project: str):
     conn = sqlite3.connect(f"{project}/output/{project}_proposals.sqlite3")
     cur = conn.cursor()
 
-    with open(f"{project}/data/proposals.json", "r") as f:
+    with open(f"{project}/tests/data/proposals.json", "r") as f:
         expected_proposals = json.load(f)
 
     for expected_proposal in expected_proposals:
@@ -107,7 +105,7 @@ def check_authors(project: str):
     conn = sqlite3.connect(f"{project}/output/{project}_proposals.sqlite3")
     cur = conn.cursor()
 
-    with open(f"{project}/data/proposals.json", "r") as f:
+    with open(f"{project}/tests/data/proposals.json", "r") as f:
         expected_proposals = json.load(f)
 
     for expected_proposal in expected_proposals:
@@ -146,7 +144,7 @@ def check_revision_dates(project: str):
     conn = sqlite3.connect(f"{project}/output/{project}_proposals.sqlite3")
     cur = conn.cursor()
 
-    with open(f"{project}/data/proposals.json", "r") as f:
+    with open(f"{project}/tests/data/proposals.json", "r") as f:
         expected_proposals = json.load(f)
 
     for expected_proposal in expected_proposals:
@@ -184,7 +182,7 @@ def check_proposal_content(project: str):
     conn = sqlite3.connect(f"{project}/output/{project}_proposals.sqlite3")
     cur = conn.cursor()
 
-    with open(f"{project}/data/proposals.json", "r") as f:
+    with open(f"{project}/tests/data/proposals.json", "r") as f:
         expected_proposals = json.load(f)
 
     for expected_proposal in expected_proposals:
@@ -226,7 +224,7 @@ def check_proposal_stages(project: str):
     conn = sqlite3.connect(f"{project}/output/{project}_proposals.sqlite3")
     cur = conn.cursor()
 
-    with open(f"{project}/data/proposals.json", "r") as f:
+    with open(f"{project}/tests/data/proposals.json", "r") as f:
         expected_proposals = json.load(f)
 
     for expected_proposal in expected_proposals:
@@ -240,7 +238,7 @@ def check_proposal_stages(project: str):
         stages_str = cur.execute(
             """
             SELECT raw_status, created_at
-            FROM StageHistory
+            FROM ProposalStatus
             WHERE proposal_id = ?
             ORDER BY created_at ASC;
             """,

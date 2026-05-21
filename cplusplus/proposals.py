@@ -16,7 +16,6 @@ from cplusplus.models import Proposal, ProposalRevision
 from tqdm.asyncio import tqdm_asyncio
 
 
-
 YEAR_URL_TEMPLATE = "https://www.open-std.org/jtc1/sc22/wg21/docs/papers/{year}/"
 
 revisions_to_fetch: List[Tuple[ProposalRevision, str]] = []
@@ -64,7 +63,9 @@ def parse_content(url: str) -> str:
 
 
 async def fetch_all_contents():
-    logging.info(f"Fetching content for {len(revisions_to_fetch)} revisions with concurrency")
+    logging.info(
+        f"Fetching content for {len(revisions_to_fetch)} revisions with concurrency"
+    )
     semaphore = asyncio.Semaphore(30)
 
     async def fetch_revision_content(revision, href):
@@ -537,6 +538,3 @@ def scrape_year(proposals: dict[str, Proposal], year: int):
     elif year >= 1992:
         return parse_list(proposals, soup, url, year)
     raise ValueError(f"Unsupported year format: {year}")
-
-
-
