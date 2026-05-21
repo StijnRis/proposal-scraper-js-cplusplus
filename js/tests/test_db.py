@@ -20,8 +20,8 @@ def test_temporal_proposal():
     assert proposal[1] == "Temporal", (
         f"Expected proposal_id 'Temporal', got '{proposal[1]}'"
     )
-    assert proposal[2] == None
-    assert proposal[3] == None
+    assert proposal[2] is None
+    assert proposal[3] is None
 
     proposalRevisions = cur.execute(
         """
@@ -34,7 +34,7 @@ def test_temporal_proposal():
 
     assert proposalRevisions[-1][0] == 3
     assert proposalRevisions[-1][1] == "Temporal"
-    assert proposalRevisions[-1][2] != None
+    assert proposalRevisions[-1][2] is not None
     assert proposalRevisions[-1][3] == "Temporal"
     assert proposalRevisions[-1][4] == "2026-04-03 09:23:09-07:00"
     assert proposalRevisions[-1][5].startswith("<!DOCTYPE html>")
@@ -64,7 +64,7 @@ def test_temporal_proposal():
     assert author[0] == "M"
     assert comments[0][2] == 3
     assert comments[0][3] == "Temporal"
-    assert comments[0][4] == None
+    assert comments[0][4] is None
     assert comments[0][5] == "2018-09-27 00:00:00"
     assert comments[0][6].startswith("This API is quite large, but we won't ")
 

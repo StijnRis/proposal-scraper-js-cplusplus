@@ -2,19 +2,15 @@ import asyncio
 import logging
 import re
 from datetime import datetime
-from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import List, Tuple
 
 import fitz
 import requests
 from bs4 import BeautifulSoup
-from pydantic import TypeAdapter
 from requests.compat import urljoin
-
-from cplusplus.insert_db import save_proposals_to_db
-from cplusplus.models import Proposal, ProposalRevision
 from tqdm.asyncio import tqdm_asyncio
 
+from cplusplus.models import Proposal, ProposalRevision
 
 YEAR_URL_TEMPLATE = "https://www.open-std.org/jtc1/sc22/wg21/docs/papers/{year}/"
 

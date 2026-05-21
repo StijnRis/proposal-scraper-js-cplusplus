@@ -27,3 +27,6 @@ dependencies = [
 dev = [
     "ruff>=0.15.13",
 ]
+
+[tool.ruff.lint]
+ignore = ["F841"]
