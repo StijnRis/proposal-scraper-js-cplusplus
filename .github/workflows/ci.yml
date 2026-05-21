@@ -5,11 +5,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
-variables:
-  # Enable caching for uv to make subsequent pipeline runs lightning-fast
-  UV_CACHE_DIR: ".uv-cache"
-
+    
 jobs:
   # Job 1: Check code formatting and linting with Ruff
   ruff-check:
