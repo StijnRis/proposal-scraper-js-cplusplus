@@ -13,6 +13,7 @@ class ProposalRevision(BaseModel):
     proposal_id: str
     title: str
     created_at: datetime.datetime
+    content_url: str | None
     content: str
     authors: set[str]
 

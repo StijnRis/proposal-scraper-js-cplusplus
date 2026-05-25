@@ -157,7 +157,7 @@ def ensure_person_identifier(
     cur = conn.cursor()
     cur.execute(
         "SELECT 1 FROM PersonIdentifier WHERE person_id = ? AND identifier_type = ? AND identifier = ? AND domain = ?",
-        (person_id, identifier_type, identifier, domain, domain),
+        (person_id, identifier_type, identifier, domain),
     )
     if cur.fetchone():
         return

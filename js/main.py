@@ -22,11 +22,18 @@ def main():
     if token is None:
         raise RuntimeError("GITHUB_TOKEN must be set in environment")
 
+    project_id = 3
+
     proposal_v1_path = Path("./js/output/proposals_v1.json")
     proposal_v2_path = Path("./js/output/proposals_v2.json")
     meeting_mapping_path = Path("./js/output/meeting_notes_mapping.json")
     db_path = Path("./js/output/js_proposals.sqlite3")
-    project_id = 3
+
+    # Ensure output directories exist
+    proposal_v1_path.parent.mkdir(parents=True, exist_ok=True)
+    proposal_v2_path.parent.mkdir(parents=True, exist_ok=True)
+    meeting_mapping_path.parent.mkdir(parents=True, exist_ok=True)
+    db_path.parent.mkdir(parents=True, exist_ok=True)
 
     adapter1 = TypeAdapter(Dict[str, proposal_stages.ProposalV1])
     adapter2 = TypeAdapter(Dict[str, proposal_revisions.ProposalV2])

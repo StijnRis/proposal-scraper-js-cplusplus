@@ -137,7 +137,7 @@ async def fetch_all_emails() -> list[Comment]:
         logging.info(f"Found {len(message_urls)} total messages to fetch.")
 
         # 2. Use a semaphore to limit concurrent HTTP requests
-        semaphore = asyncio.Semaphore(10)
+        semaphore = asyncio.Semaphore(50)
         tasks = [fetch_and_parse(client, url, semaphore) for url in message_urls]
 
         results = await asyncio.gather(*tasks)

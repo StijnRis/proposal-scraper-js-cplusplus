@@ -20,12 +20,18 @@ def main():
     project_id = 4
     start_year = 1992
     end_year = 2026
-    proposals = {}
+    proposals: Dict[str, Proposal] = {}
 
     proposals_path = Path("cplusplus/output/proposals.json")
     proposals_with_stages_path = Path("cplusplus/output/proposals_with_stages.json")
     comments_path = Path("./cplusplus/output/comments.json")
     db_path = Path("cplusplus/output/cplusplus_proposals.sqlite3")
+
+    # Ensure output directories exist
+    proposals_path.parent.mkdir(parents=True, exist_ok=True)
+    proposals_with_stages_path.parent.mkdir(parents=True, exist_ok=True)
+    comments_path.parent.mkdir(parents=True, exist_ok=True)
+    db_path.parent.mkdir(parents=True, exist_ok=True)
 
     adapter = TypeAdapter(Dict[str, Proposal])
     adapter_comments = TypeAdapter(list[Comment])
@@ -36,7 +42,7 @@ def main():
             logging.info(f"Processing year {year}...")
             proposals.update(scrape_year(proposals, year))
             logging.info(f"After processing {year}, total proposals: {len(proposals)}")
-        asyncio.run(fetch_all_contents())
+        asyncio.run(fetch_all_contents(list(proposals.values())))
         proposals_path.write_bytes(adapter.dump_json(proposals, indent=2))
         logging.debug(f"Wrote {len(proposals)} proposals to proposals.json")
 

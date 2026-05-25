@@ -28,7 +28,6 @@ class ProposalV2(BaseModel):
 def fetch_revisions(proposals_v1: Dict[str, proposal_stages.ProposalV1]):
 
     total_revisions = 0
-
     proposals = {}
 
     total = len(proposals_v1)
@@ -61,7 +60,6 @@ def fetch_revisions(proposals_v1: Dict[str, proposal_stages.ProposalV1]):
                 logging.info("Cloning repo %s to %s", clean_repo_url, repo_path)
                 git.Repo.clone_from(clean_repo_url, repo_path, bare=True)
             except git.GitCommandError:
-                # Try the same repo under the tc39 organization
                 tc39_full = f"tc39/{repo}"
                 tc39_url = f"https://github.com/{tc39_full}"
                 repo_path_tc39 = f"./js/output/repos/tc39_{repo}"
@@ -71,8 +69,7 @@ def fetch_revisions(proposals_v1: Dict[str, proposal_stages.ProposalV1]):
                         tc39_url,
                         repo_path_tc39,
                     )
-                    git.Repo.clone_from(tc39_url, repo_path_tc39)
-                    # switch to tc39 clone
+                    git.Repo.clone_from(tc39_url, repo_path_tc39, bare=True)
                     full = tc39_full
                     clean_repo_url = tc39_url
                     repo_path = repo_path_tc39
@@ -87,11 +84,15 @@ def fetch_revisions(proposals_v1: Dict[str, proposal_stages.ProposalV1]):
 
         r = git.Repo(repo_path)
 
-        # Loop through all commits, check content of file spec.html or spec.emu
-        # if it changes, save it. If neither exist, crash
         revisions = []
         previous_content = None
-        for commit in r.iter_commits():
+        
+        try:
+            commits = r.iter_commits(r.head.reference)
+        except (AttributeError, ValueError):
+            commits = r.iter_commits('HEAD')
+
+        for commit in commits:
             content = get_text_from_commit(commit)
 
             if content == previous_content:
@@ -128,52 +129,44 @@ def get_text_from_commit(commit: git.Commit):
     # exact spec.html
     try:
         blob = commit.tree / "spec.html"
-        content = blob.data_stream.read().decode("utf-8")
-        return content
+        return blob.data_stream.read().decode("utf-8")
     except KeyError:
         pass
 
     # exact spec.emu
     try:
         blob = commit.tree / "spec.emu"
-        content = blob.data_stream.read().decode("utf-8")
-        return content
+        return blob.data_stream.read().decode("utf-8")
     except KeyError:
-        content = None
+        pass
 
     # any .html file
     for item in commit.tree.traverse():
         if isinstance(item, git.Blob) and str(item.path).lower().endswith(".html"):
-            blob = item
-            content = blob.data_stream.read().decode("utf-8")
-            return content
+            return item.data_stream.read().decode("utf-8")
 
     # any .emu file
     for item in commit.tree.traverse():
         if isinstance(item, git.Blob) and str(item.path).lower().endswith(".emu"):
-            blob = item
-            content = blob.data_stream.read().decode("utf-8")
-            return content
+            return item.data_stream.read().decode("utf-8")
 
     # README variants
     for name in ("README.md", "readme.md"):
         try:
             blob = commit.tree / name
-            content = blob.data_stream.read().decode("latin-1")
-            return content
+            return blob.data_stream.read().decode("latin-1")
         except KeyError:
-            blob = None
+            pass
 
-    # 6) fallback: first markdown file
+    # fallback: first markdown file
     for item in commit.tree.traverse():
         if isinstance(item, git.Blob) and str(item.path).lower().endswith(".md"):
-            blob = item
-            content = blob.data_stream.read().decode("latin-1")
-            return content
+            return item.data_stream.read().decode("latin-1")
 
+    # FIX: Safely logging repo path without breaking on bare repo 'working_dir' constraints
     logging.warning(
         "No content found for commit %s in repo %s; returning empty string",
         commit.hexsha,
-        commit.repo.working_dir,
+        commit.repo.git_dir,
     )
     return ""
