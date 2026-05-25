@@ -4,7 +4,6 @@ import datetime
 import logging
 import os
 import re
-from typing import Dict, List
 
 import requests
 from dotenv import load_dotenv
