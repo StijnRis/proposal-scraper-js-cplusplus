@@ -2,12 +2,12 @@ import asyncio
 import logging
 import re
 from datetime import datetime
-from typing import List, Tuple
+from typing import List
 
-from diskcache import Cache
 import fitz
 import requests
 from bs4 import BeautifulSoup
+from diskcache import Cache
 from requests.adapters import HTTPAdapter, Retry
 from requests.compat import urljoin
 from tqdm.asyncio import tqdm_asyncio
@@ -34,6 +34,7 @@ def is_proposal(num_text: str) -> bool:
 
     return False
 
+
 def get_retry_session(
     retries=3, backoff_factor=1, status_forcelist=(500, 502, 503, 504)
 ) -> requests.Session:
@@ -52,13 +53,14 @@ def get_retry_session(
     session.mount("https://", adapter)
     return session
 
+
 def parse_content(url: str) -> str:
     session = get_retry_session()
 
-    assert url is not None, "Content URL is None, cannot fetch content"        
+    assert url is not None, "Content URL is None, cannot fetch content"
 
     resp = session.get(url, timeout=30)
-    
+
     ctype = resp.headers.get("Content-Type", "")
     if "text/html" in ctype:
         s = BeautifulSoup(resp.content, "html5lib")
@@ -79,7 +81,9 @@ def parse_content(url: str) -> str:
         logging.warning(f"Unknown content type {ctype} for URL {url}, treating as text")
         return resp.text
 
+
 cache = Cache("cplusplus/output/proposal_content_cache")
+
 
 async def fetch_all_contents(proposals: List[Proposal]):
     revisions = [rev for proposal in proposals for rev in proposal.revisions]
@@ -94,7 +98,7 @@ async def fetch_all_contents(proposals: List[Proposal]):
         if not revision.content_url:
             logging.warning(f"Revision {revision.proposal_id} has no URL, skipping")
             continue
-            
+
         if revision.content_url in cache:
             already_cached.append(revision)
         else:
@@ -105,35 +109,38 @@ async def fetch_all_contents(proposals: List[Proposal]):
         f"Cache summary -> Hits: {len(already_cached)} | Misses: {len(to_download)} "
         f"({(len(already_cached) / total_revisions) * 100:.1f}% cached)"
     )
-    
+
     for revision in already_cached:
         revision.content = cache[revision.content_url]
 
     if not to_download:
-        logging.info("All records successfully loaded from cache. No network requests needed.")
+        logging.info(
+            "All records successfully loaded from cache. No network requests needed."
+        )
         return
 
     # 3. Process only the remaining items
-    logging.info(f"Starting concurrent downloads for the remaining {len(to_download)} items...")
-    
-    semaphore = asyncio.Semaphore(10) 
+    logging.info(
+        f"Starting concurrent downloads for the remaining {len(to_download)} items..."
+    )
+
+    semaphore = asyncio.Semaphore(10)
 
     async def fetch_revision_content(revision: ProposalRevision):
         async with semaphore:
-            assert revision.content_url is not None, "Revision content URL is None, cannot fetch content"
+            assert revision.content_url is not None, (
+                "Revision content URL is None, cannot fetch content"
+            )
             content = await asyncio.to_thread(parse_content, revision.content_url)
-            
+
             if content is not None:
                 revision.content = content
                 # Persist to disk
                 await asyncio.to_thread(cache.set, revision.content_url, content)
-            
 
     # The progress bar dynamically scales to track only the outstanding downloads
-    await tqdm_asyncio.gather(
-        *(fetch_revision_content(rev) for rev in to_download)
-    )
-    
+    await tqdm_asyncio.gather(*(fetch_revision_content(rev) for rev in to_download))
+
     logging.info("Content fetching complete.")
 
 
@@ -403,7 +410,7 @@ def parse_list(proposals: dict[str, Proposal], soup, base_url, year: int):
             link_tag = li.find("a", string=marker)
             if link_tag:
                 break
-        
+
         content_url = None
         if link_tag:
             content_url = urljoin(base_url, link_tag["href"])
@@ -425,8 +432,6 @@ def parse_list(proposals: dict[str, Proposal], soup, base_url, year: int):
             content_url=content_url,
         )
         proposals[proposal_id].revisions.append(revision)
-
-        
 
     return proposals
 
@@ -548,7 +553,7 @@ def parse_text_blob_multiple_lines(proposals: dict[str, Proposal], soup, base_ur
                     subgroup="",
                     revisions=[],
                 )
-            
+
             content_url = None
             link = wg21_number_item.find("a")
             if link:
@@ -569,8 +574,6 @@ def parse_text_blob_multiple_lines(proposals: dict[str, Proposal], soup, base_ur
                 content_url=content_url,
             )
             proposals[proposal_id].revisions.append(revision)
-
-            
 
     return proposals
 

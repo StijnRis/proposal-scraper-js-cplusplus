@@ -86,11 +86,11 @@ def fetch_revisions(proposals_v1: Dict[str, proposal_stages.ProposalV1]):
 
         revisions = []
         previous_content = None
-        
+
         try:
             commits = r.iter_commits(r.head.reference)
         except (AttributeError, ValueError):
-            commits = r.iter_commits('HEAD')
+            commits = r.iter_commits("HEAD")
 
         for commit in commits:
             content = get_text_from_commit(commit)
