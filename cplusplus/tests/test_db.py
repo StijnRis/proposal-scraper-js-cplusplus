@@ -100,7 +100,7 @@ def test_comments():
     conn.close()
 
 
-def test_all_number_exist():
+def test_all_comment_numbers_exist():
     # get all ids from database, then check if ther are any missing numbers in the sequence
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()

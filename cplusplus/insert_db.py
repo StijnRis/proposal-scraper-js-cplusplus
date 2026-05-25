@@ -51,8 +51,10 @@ def save_proposals_to_db(
                 topic=None,
                 proposal_type=None,
             )
+
             stage_index = 0
-            for stage in proposal.stages:
+            sorted_stages = sorted(proposal.stages, key=lambda s: s.created_at)
+            for stage in sorted_stages:
                 normalised_status = get_normalised_status(stage.stage)
                 insert_stage_history(
                     conn,
@@ -64,6 +66,7 @@ def save_proposals_to_db(
                     created_at=stage.created_at,
                 )
                 stage_index += 1
+
             sorted_revisions = sorted(proposal.revisions, key=lambda r: r.created_at)
             index_number = 0
             for revision in sorted_revisions:
@@ -130,7 +133,7 @@ def get_normalised_status(raw_status: str) -> str:
     raw_status = raw_status.lower()
     if raw_status == "merged":
         return "accepted"
-    elif raw_status == "closed":
+    elif raw_status == "rejected":
         return "rejected"
     elif raw_status == "open":
         return "draft"

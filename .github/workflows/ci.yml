@@ -44,4 +44,4 @@ jobs:
         run: |
           # uv sync ensures all dependencies are installed
           uv sync
-          uv run pytest
+          uv run pytest --ignore-glob="*test_db.py"

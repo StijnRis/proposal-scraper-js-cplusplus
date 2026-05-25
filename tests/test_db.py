@@ -216,7 +216,7 @@ def test_js_proposal_stages():
     check_proposal_stages("js")
 
 
-def test_cplusplus_proposal_stages():
+def test_cplusplus_proposal_statusses():
     check_proposal_stages("cplusplus")
 
 
@@ -229,10 +229,10 @@ def check_proposal_stages(project: str):
 
     for expected_proposal in expected_proposals:
         proposal_id = expected_proposal["proposal_id"]
-        if "stages" not in expected_proposal:
+        if "statusses" not in expected_proposal:
             continue
         expected_stages = [
-            s["status"] + " " + s["date"] for s in expected_proposal["stages"]
+            s["raw_status"] + " " + s["date"] for s in expected_proposal["statusses"]
         ]
 
         stages_str = cur.execute(

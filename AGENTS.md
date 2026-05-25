@@ -12,7 +12,7 @@ Research project: Scrape proposal data from the JavaScript and C++ repositories,
 ## Execution
 
 - Execute pipeline: `uv run main.py`
-- Execute tests: `uv run pytest` (only core math/logic tests, no setup or integration tests).
+- Execute tests: `uv run pytest --ignore-glob="*test_db.py"` (only core math/logic tests, no setup or integration tests).
 - **Mandatory Verification:** Always run both the pipeline and execute tests immediately after code modifications. If runtime or test errors occur, debug and fix them instantly before adding new features.
 
 ---

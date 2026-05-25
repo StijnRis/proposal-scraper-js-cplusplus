@@ -49,8 +49,9 @@ def save_to_db(
                 proposal_type=None,
             )
 
+            sorted_stages = sorted(proposal.stages, key=lambda s: s.created_at)
             stage_index = 0
-            for stage in proposal.stages:
+            for stage in sorted_stages:
                 normalised_status = get_normalised_status(stage.status)
                 insert_stage_history(
                     conn,

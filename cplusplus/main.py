@@ -8,7 +8,7 @@ from pydantic import TypeAdapter
 from cplusplus.emails import fetch_all_emails
 from cplusplus.insert_db import save_to_db
 from cplusplus.models import Comment, Proposal
-from cplusplus.proposal_stages import add_proposal_stages
+from cplusplus.proposal_statusses import add_proposal_statusses
 from cplusplus.proposals import fetch_all_contents, scrape_year
 
 logging.basicConfig(
@@ -23,13 +23,15 @@ def main():
     proposals: Dict[str, Proposal] = {}
 
     proposals_path = Path("cplusplus/output/proposals.json")
-    proposals_with_stages_path = Path("cplusplus/output/proposals_with_stages.json")
+    proposals_with_statusses_path = Path(
+        "cplusplus/output/proposals_with_statusses.json"
+    )
     comments_path = Path("./cplusplus/output/comments.json")
     db_path = Path("cplusplus/output/cplusplus_proposals.sqlite3")
 
     # Ensure output directories exist
     proposals_path.parent.mkdir(parents=True, exist_ok=True)
-    proposals_with_stages_path.parent.mkdir(parents=True, exist_ok=True)
+    proposals_with_statusses_path.parent.mkdir(parents=True, exist_ok=True)
     comments_path.parent.mkdir(parents=True, exist_ok=True)
     db_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -46,12 +48,12 @@ def main():
         proposals_path.write_bytes(adapter.dump_json(proposals, indent=2))
         logging.debug(f"Wrote {len(proposals)} proposals to proposals.json")
 
-    if not proposals_with_stages_path.exists():
-        logging.info("Adding stages to proposals...")
+    if not proposals_with_statusses_path.exists():
+        logging.info("Adding statusses to proposals...")
         proposals = adapter.validate_json(proposals_path.read_bytes())
-        proposals_with_stages = add_proposal_stages(proposals)
-        proposals_with_stages_path.write_bytes(
-            adapter.dump_json(proposals_with_stages, indent=2)
+        proposals_with_statusses = add_proposal_statusses(proposals)
+        proposals_with_statusses_path.write_bytes(
+            adapter.dump_json(proposals_with_statusses, indent=2)
         )
 
     if not comments_path.exists():
@@ -63,10 +65,10 @@ def main():
     # Save to DB
     logging.info("Saving to database...")
     comments = adapter_comments.validate_json(comments_path.read_bytes())
-    proposals_with_stages = adapter.validate_json(
-        proposals_with_stages_path.read_bytes()
+    proposals_with_statusses = adapter.validate_json(
+        proposals_with_statusses_path.read_bytes()
     )
-    save_to_db(db_path, proposals_with_stages, comments, project_id=project_id)
+    save_to_db(db_path, proposals_with_statusses, comments, project_id=project_id)
 
 
 if __name__ == "__main__":

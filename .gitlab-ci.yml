@@ -30,4 +30,4 @@ ruff-check:
 run-tests:
   script:
     - uv sync
-    - uv run pytest
+    - uv run pytest --ignore-glob="*test_db.py"

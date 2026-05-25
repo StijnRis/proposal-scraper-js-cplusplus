@@ -6,7 +6,7 @@ from typing import Dict, List
 from dotenv import load_dotenv
 from pydantic import TypeAdapter
 
-from js import proposal_revisions, proposal_stages
+from js import proposal_revisions, proposal_statusses
 from js.insert_db import save_to_db
 from js.proposal_meeting_notes import MeetingNote, build_mapping
 
@@ -35,14 +35,14 @@ def main():
     meeting_mapping_path.parent.mkdir(parents=True, exist_ok=True)
     db_path.parent.mkdir(parents=True, exist_ok=True)
 
-    adapter1 = TypeAdapter(Dict[str, proposal_stages.ProposalV1])
+    adapter1 = TypeAdapter(Dict[str, proposal_statusses.ProposalV1])
     adapter2 = TypeAdapter(Dict[str, proposal_revisions.ProposalV2])
     adapter_meetings_map = TypeAdapter(Dict[str, List[MeetingNote]])
 
     if not proposal_v2_path.exists():
         logging.info("Computing stage history")
-        proposals_v1: Dict[str, proposal_stages.ProposalV1] = (
-            proposal_stages.compute_stage_history()
+        proposals_v1: Dict[str, proposal_statusses.ProposalV1] = (
+            proposal_statusses.compute_stage_history()
         )
         json_data = adapter1.dump_json(proposals_v1, indent=2)
         proposal_v1_path.write_bytes(json_data)

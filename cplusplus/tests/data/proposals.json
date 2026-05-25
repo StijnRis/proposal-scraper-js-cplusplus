@@ -6,7 +6,7 @@
         "title": "Merging Lvalue and Reference; and Canonicalizing Types",
         "revisions": [
             {
-                "date": "1992-01-01 00:00:00"
+                "date": "1992-01-01T00:00:00"
             }
         ]
     },
@@ -17,7 +17,7 @@
         "title": "Minutes ISO/IEC JTC1/SC22/WG21 Meeting No. 11",
         "revisions": [
             {
-                "date": "1995-01-01 00:00:00"
+                "date": "1995-01-01T00:00:00"
             }
         ]
     },
@@ -28,7 +28,7 @@
         "title": "Member Access Control and Nested Classes",
         "revisions": [
             {
-                "date": "2000-01-01 00:00:00"
+                "date": "2000-01-01T00:00:00"
             }
         ]
     },
@@ -39,7 +39,7 @@
         "title": "Agenda, J16 Meeting No.32, WG21 Meeting No. 27, April 30-May 4, 2001",
         "revisions": [
             {
-                "date": "2001-01-01 00:00:00"
+                "date": "2001-01-01T00:00:00"
             }
         ]
     },
@@ -55,7 +55,7 @@
         "authors": ["H...r"],
         "revisions": [
             {
-                "date": "2002-03-01 00:00:00"
+                "date": "2002-03-01T00:00:00"
             }
         ]
     },
@@ -65,7 +65,7 @@
         "title": "Type Traits Proposal",
         "revisions": [
             {
-                "date": "2002-03-07 00:00:00"
+                "date": "2002-03-07T00:00:00"
             }
         ]
     },
@@ -76,17 +76,17 @@
         "title": "TG5 Liaison Report to WG21",
         "revisions": [
             {
-                "date": "2003-12-05 00:00:00"
+                "date": "2003-12-05T00:00:00"
             }
         ]
     },
     {
         "proposal_id": "N1653",
         "found_in_list_of_years": [2004],
-        "stages": [
+        "statusses": [
             {
-                "status": "accepted",
-                "date": "2011-08-01 00:00:00"
+                "raw_status": "accepted",
+                "date": "2011-08-01T00:00:00+00:00"
             }
         ]
     },
@@ -97,7 +97,7 @@
         "title": "Compile-time integer sequences",
         "revisions": [
             {
-                "date": "2013-01-11 00:00:00"
+                "date": "2013-01-11T00:00:00"
             }
         ]
     },
@@ -108,30 +108,51 @@
         "title": "Generalised member pointers",
         "revisions": [
             {
-                "date": "2016-02-12 00:00:00"
+                "date": "2016-02-12T00:00:00"
             },
             {
-                "date": "2025-01-13 00:00:00"
+                "date": "2025-01-13T00:00:00"
             },
             {
-                "date": "2025-05-19 00:00:00"
+                "date": "2025-05-19T00:00:00"
             },
             {
-                "date": "2025-05-19 00:00:00"
+                "date": "2025-05-19T00:00:00"
             }
         ]
     },
     {
         "proposal_id": "P3986",
         "found_in_list_of_years": [2026],
-        "stages": [
+        "statusses": [
             {
-                "status": "draft",
-                "date": "2026-04-03 00:00:00"
+                "raw_status": "accepted",
+                "date": "2026-03-01T00:00:00+00:00"
             },
             {
-                "status": "accepted",
-                "date": "2026-04-03 00:00:00"
+                "raw_status": "open",
+                "date": "2026-04-03T20:58:49+00:00"
+            },
+            {
+                "raw_status": "merged",
+                "date": "2026-04-21T15:18:56+00:00"
+            }
+        ]
+    },
+    {
+        "proposal_id": "P0330",
+        "statusses": [
+            {
+                "raw_status": "open",
+                "date": "2019-01-05T16:43:58+00:00"
+            },
+            {
+                "raw_status": "merged",
+                "date": "2020-11-26T12:09:38+00:00"
+            },
+            {
+                "raw_status": "accepted",
+                "date": "2024-10-01T00:00:00+00:00"
             }
         ]
     },

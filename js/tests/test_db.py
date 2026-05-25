@@ -23,24 +23,24 @@ def test_temporal_proposal():
     assert proposal[2] is None
     assert proposal[3] is None
 
-    proposalRevisions = cur.execute(
+    proposal_revisions = cur.execute(
         """
         SELECT * FROM ProposalRevision
         WHERE proposal_id = 'Temporal'
-        ORDER BY created_at ASC;
+        ORDER BY created_at ASC
+        LIMIT 1;
         """
     ).fetchall()
-    assert len(proposalRevisions) > 0, "No revisions found for Temporal proposal"
+    assert len(proposal_revisions) > 0, "No revisions found for Temporal proposal"
+    proposal_revision = proposal_revisions[0]
 
-    assert proposalRevisions[-1][0] == 3
-    assert proposalRevisions[-1][1] == "Temporal"
-    assert proposalRevisions[-1][2] is not None
-    assert proposalRevisions[-1][3] == "Temporal"
-    assert proposalRevisions[-1][4] == "2026-04-03 09:23:09-07:00"
-    assert proposalRevisions[-1][5].startswith("<!DOCTYPE html>")
-    assert proposalRevisions[-1][5].endswith(
-        '<emu-import href="spec/intl.html"></emu-import>\n'
-    )
+    assert proposal_revision[0] == 3
+    assert proposal_revision[1] == "Temporal"
+    assert proposal_revision[2] is not None
+    assert proposal_revision[3] == "Temporal"
+    assert proposal_revision[4] == "2017-03-13T12:44:31-07:00"
+    assert proposal_revision[5].startswith("### Temporal Proposal")
+    assert proposal_revision[5].endswith("(ex: 3 months)\n")
 
     comments = cur.execute(
         """
@@ -52,6 +52,13 @@ def test_temporal_proposal():
 
     assert len(comments) > 100
 
+    comment = comments[0]
+    assert comment[2] == 3
+    assert comment[3] == "Temporal"
+    assert comment[4] is None
+    assert comment[5] == "2018-09-27T00:00:00"
+    assert comment[6].startswith("This API is quite large, but we won't ")
+
     author_id = comments[0][1]
     author = cur.execute(
         """
@@ -62,17 +69,13 @@ def test_temporal_proposal():
     ).fetchone()[0]
 
     assert author[0] == "M"
-    assert comments[0][2] == 3
-    assert comments[0][3] == "Temporal"
-    assert comments[0][4] is None
-    assert comments[0][5] == "2018-09-27 00:00:00"
-    assert comments[0][6].startswith("This API is quite large, but we won't ")
 
     stageHistory = cur.execute(
         """
         SELECT * FROM ProposalStatus
         WHERE proposal_id = 'Temporal'
-        ORDER BY created_at ASC;
+        ORDER BY created_at ASC
+        LIMIT 1;
         """
     ).fetchall()
 
@@ -82,7 +85,7 @@ def test_temporal_proposal():
     assert stageHistory[0][2] == 0
     assert stageHistory[0][3] == "Stage 1"
     assert stageHistory[0][4] == "draft"
-    assert stageHistory[0][5] == "2017-04-03 04:21:18"
+    assert stageHistory[0][5] == "2017-04-03T04:21:18"
 
     conn.close()
 

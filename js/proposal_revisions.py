@@ -6,7 +6,7 @@ from typing import Dict
 import git
 from pydantic import BaseModel
 
-from js import proposal_stages
+from js import proposal_statusses
 
 
 class ProposalRevision(BaseModel):
@@ -20,12 +20,12 @@ class ProposalRevision(BaseModel):
 
 class ProposalV2(BaseModel):
     proposal_id: str
-    stages: list[proposal_stages.StageHistoryEvent]
+    stages: list[proposal_statusses.StageHistoryEvent]
     revisions: list[ProposalRevision]
     meeting_notes_locations: set[str]
 
 
-def fetch_revisions(proposals_v1: Dict[str, proposal_stages.ProposalV1]):
+def fetch_revisions(proposals_v1: Dict[str, proposal_statusses.ProposalV1]):
 
     total_revisions = 0
     proposals = {}

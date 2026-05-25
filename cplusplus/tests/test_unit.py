@@ -89,7 +89,7 @@ def test_proposals():
                 )
 
 
-def test_stages():
+def test_statusses():
     # Not feasible to unit test as everything will have to be fetched for this
     pass
 
