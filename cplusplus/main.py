@@ -1,4 +1,5 @@
 import asyncio
+from datetime import datetime
 import logging
 from pathlib import Path
 from typing import Dict
@@ -27,7 +28,8 @@ def main():
         "cplusplus/output/proposals_with_statusses.json"
     )
     comments_path = Path("./cplusplus/output/comments.json")
-    db_path = Path("cplusplus/output/cplusplus_proposals.sqlite3")
+    current_date = datetime.now().strftime("%Y-%m-%d")
+    db_path = Path(f"./cplusplus/output/cplusplus_proposals_{current_date}.sqlite3")
 
     # Ensure output directories exist
     proposals_path.parent.mkdir(parents=True, exist_ok=True)

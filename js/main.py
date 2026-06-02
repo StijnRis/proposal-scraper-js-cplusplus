@@ -1,3 +1,4 @@
+from datetime import datetime
 import logging
 import os
 from pathlib import Path
@@ -27,7 +28,8 @@ def main():
     proposal_v1_path = Path("./js/output/proposals_v1.json")
     proposal_v2_path = Path("./js/output/proposals_v2.json")
     meeting_mapping_path = Path("./js/output/meeting_notes_mapping.json")
-    db_path = Path("./js/output/js_proposals.sqlite3")
+    current_date = datetime.now().strftime("%Y-%m-%d")
+    db_path = Path(f"./js/output/js_proposals_{current_date}.sqlite3")
 
     # Ensure output directories exist
     proposal_v1_path.parent.mkdir(parents=True, exist_ok=True)
@@ -39,7 +41,7 @@ def main():
     adapter2 = TypeAdapter(Dict[str, proposal_revisions.ProposalV2])
     adapter_meetings_map = TypeAdapter(Dict[str, List[MeetingNote]])
 
-    if not proposal_v2_path.exists():
+    if not proposal_v1_path.exists():
         logging.info("Computing stage history")
         proposals_v1: Dict[str, proposal_statusses.ProposalV1] = (
             proposal_statusses.compute_stage_history()

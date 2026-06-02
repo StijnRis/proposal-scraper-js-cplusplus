@@ -190,6 +190,30 @@ def ensure_person(conn: sqlite3.Connection, full_name: Optional[str]) -> int:
     return person_id
 
 
+def ensure_person_organisation(
+    conn: sqlite3.Connection, person_id: int, organisation_name: str
+):
+    cur = conn.cursor()
+    cur.execute(
+        "SELECT organisation_id FROM Organisation WHERE organisation_name = ?",
+        (organisation_name,),
+    )
+    row = cur.fetchone()
+    organisation_id = None
+    if row:
+        organisation_id = row[0]
+    else:
+        cur.execute(
+            "INSERT INTO Organisation (organisation_name) VALUES (?)",
+            (organisation_name,),
+        )
+        organisation_id = cur.lastrowid
+    cur.execute(
+        "INSERT OR IGNORE INTO Affiliation (person_id, organisation_id) VALUES (?, ?)",
+        (person_id, organisation_id),
+    )
+
+
 def insert_comment(
     conn: sqlite3.Connection,
     author_id: int,

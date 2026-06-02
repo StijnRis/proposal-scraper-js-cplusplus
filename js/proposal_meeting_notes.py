@@ -9,11 +9,16 @@ import git
 from pydantic import BaseModel
 
 
+class Author(BaseModel):
+    name: str
+    organization: str | None
+
 class MeetingNote(BaseModel):
     content: str
     created_at: datetime
     index: int
-    author: str
+    author: Author
+
 
 
 REPO_URL = "https://github.com/tc39/notes.git"
@@ -74,7 +79,7 @@ def create_header_to_content_map(
 
     header_map = {}
 
-    mapping = build_abbreviations_to_names_mapping(markdown_text)
+    abbreviation_to_names_mapping = build_abbreviations_to_names_mapping(markdown_text)
 
     for i, match in enumerate(matches):
         level, title = match.group(1), match.group(2).strip()
@@ -93,7 +98,7 @@ def create_header_to_content_map(
 
         content = markdown_text[start_idx:end_idx].strip()
 
-        notes = parse_text_to_meeting_notes(content, mapping, date)
+        notes = parse_text_to_meeting_notes(content, abbreviation_to_names_mapping, date)
 
         header_map[f"#{anchor}"] = notes
 
@@ -101,7 +106,7 @@ def create_header_to_content_map(
 
 
 def parse_text_to_meeting_notes(
-    text: str, abbreviations_to_names: dict[str, str], date: datetime
+    text: str, abbreviations_to_names: dict[str, Author], date: datetime
 ) -> list[MeetingNote]:
     notes = []
     lines = text.split("\n")
@@ -167,7 +172,7 @@ def parse_text_to_meeting_notes(
     return notes
 
 
-def parse_table(md: str) -> Dict[str, str]:
+def parse_table(md: str) -> Dict[str, Author]:
     header_re = re.compile(r"^\s*\|.*name.*\|.*abbrev", re.IGNORECASE | re.MULTILINE)
     m = header_re.search(md)
     if not m:
@@ -207,7 +212,7 @@ def parse_table(md: str) -> Dict[str, str]:
         if "organ" in lh:
             org_i = i
 
-    results: Dict[str, str] = {}
+    results: Dict[str, Author] = {}
     for r in rows:
         cols = [c.strip() for c in r.strip().strip("|").split("|")]
         if name_i is None or name_i >= len(cols):
@@ -215,18 +220,18 @@ def parse_table(md: str) -> Dict[str, str]:
         name = cols[name_i]
         abbr = cols[abbr_i] if (abbr_i is not None and abbr_i < len(cols)) else ""
         org = cols[org_i] if (org_i is not None and org_i < len(cols)) else ""
-        results[abbr] = name
+        results[abbr] = Author(name=name, organization=org)
     return results
 
 
-def parse_parenthetical(md: str) -> Dict[str, str]:
+def parse_parenthetical(md: str) -> Dict[str, Author]:
     # Matches patterns like: Name S. Last (ABC)
     # Name part accepts letters, dots, hyphens, apostrophes and spaces; unicode letters included
     pattern = re.compile(
         r"([A-Z][A-Za-zÀ-ÖØ-öø-ÿ'\.\- ]{1,120}?)\s*\(\s*([A-Z]{1,6})\s*\)"
     )
     matches = pattern.findall(md)
-    results: Dict[str, str] = {}
+    results: Dict[str, Author] = {}
     seen = set()
     for name, abbr in matches:
         name = name.strip().strip(",")
@@ -234,11 +239,11 @@ def parse_parenthetical(md: str) -> Dict[str, str]:
         if key in seen:
             continue
         seen.add(key)
-        results[abbr] = name
+        results[abbr] = Author(name=name, organization=None)
     return results
 
 
-def build_abbreviations_to_names_mapping(md: str) -> Dict[str, str]:
+def build_abbreviations_to_names_mapping(md: str) -> Dict[str, Author]:
     if "May 22, 2012 Meeting Notes" in md:
         md = os.environ.get("TC39_2012_05_22_mapping", "")
     elif "May 23, 2012 Meeting Notes" in md:

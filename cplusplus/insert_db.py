@@ -46,8 +46,8 @@ def save_proposals_to_db(
         for proposal_id, proposal in proposals.items():
             insert_proposal(
                 conn,
-                project_id,
-                proposal.proposal_id,
+                project_id=project_id,
+                proposal_id=proposal.proposal_id,
                 topic=None,
                 proposal_type=None,
             )
