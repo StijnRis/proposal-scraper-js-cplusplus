@@ -103,7 +103,9 @@ def save_to_db(
                 for note in sorted_notes:
                     author_id = ensure_person(conn, note.author.name)
                     if note.author.organization:
-                        ensure_person_organisation(conn, author_id, note.author.organization)
+                        ensure_person_organisation(
+                            conn, author_id, note.author.organization
+                        )
                     previous_note_id = insert_comment(
                         conn,
                         author_id=author_id,

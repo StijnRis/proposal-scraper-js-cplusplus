@@ -79,7 +79,6 @@ def save_proposals_to_db(
                     created_at=revision.created_at,
                     content=revision.content,
                 )
-                index_number += 1
                 for author in set(revision.authors):
                     person_id = ensure_person(conn, author)
                     insert_proposal_revision_author(
@@ -89,6 +88,7 @@ def save_proposals_to_db(
                         revision_index=index_number,
                         person_id=person_id,
                     )
+                index_number += 1
 
     conn.close()
 

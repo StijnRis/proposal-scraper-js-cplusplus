@@ -65,7 +65,8 @@ def plot_proposals_per_year(
 
     fig.savefig(save_path)
 
-def main():    
+
+def main():
     items = [
         {
             "db_path": "js/output/js_proposals_2026-06-01.sqlite3",
@@ -102,6 +103,7 @@ def main():
             project_id=item["project_id"],
             save_path=item["save_path"] + "/proposals_per_year.png",
         )
+
 
 if __name__ == "__main__":
     main()

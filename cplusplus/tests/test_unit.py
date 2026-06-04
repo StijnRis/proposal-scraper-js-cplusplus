@@ -43,7 +43,7 @@ def test_proposals():
         for expected_proposal in expected_proposals:
             proposal_id = expected_proposal["proposal_id"]
 
-            proposal = Proposal(proposal_id="", revisions=[], stages=[],subgroup="")
+            proposal = Proposal(proposal_id="", revisions=[], stages=[], subgroup="")
             if "found_in_list_of_years" in expected_proposal:
                 found_in_list_of_years = expected_proposal["found_in_list_of_years"]
                 proposals: dict[str, Proposal] = {}
@@ -155,10 +155,7 @@ def test_comments():
             ), (
                 f"Comment at {url} has author_email ending with '{comment.author_email[-1]}', expected '{expected_comment['author_email']['ends_with']}'"
             )
-            assert (
-                datetime.fromisoformat(expected_comment["date"])
-                == comment.date
-            ), (
+            assert datetime.fromisoformat(expected_comment["date"]) == comment.date, (
                 f"Comment at {url} has date {comment.date}, expected {expected_comment['date']}"
             )
             assert comment.content.startswith(

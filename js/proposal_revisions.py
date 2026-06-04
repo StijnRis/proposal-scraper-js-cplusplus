@@ -42,13 +42,14 @@ def fetch_revisions(proposals_v1: Dict[str, proposal_statusses.ProposalV1]):
             revisions=revisions,
             meeting_notes_locations=proposal_v1.meeting_notes_locations,
         )
-     
 
     logging.info("Total revisions saved: %d", total_revisions)
     return proposals
 
 
-def fetch_revision(proposal_v1: proposal_statusses.ProposalV1, title: str) -> list[ProposalRevision]:
+def fetch_revision(
+    proposal_v1: proposal_statusses.ProposalV1, title: str
+) -> list[ProposalRevision]:
     repo_url = proposal_v1.stages[0].github_url
     if not repo_url:
         logging.warning("No repo URL for %s; skipping", title)

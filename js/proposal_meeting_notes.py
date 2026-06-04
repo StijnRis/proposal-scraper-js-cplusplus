@@ -13,12 +13,12 @@ class Author(BaseModel):
     name: str
     organization: str | None
 
+
 class MeetingNote(BaseModel):
     content: str
     created_at: datetime
     index: int
     author: Author
-
 
 
 REPO_URL = "https://github.com/tc39/notes.git"
@@ -98,7 +98,9 @@ def create_header_to_content_map(
 
         content = markdown_text[start_idx:end_idx].strip()
 
-        notes = parse_text_to_meeting_notes(content, abbreviation_to_names_mapping, date)
+        notes = parse_text_to_meeting_notes(
+            content, abbreviation_to_names_mapping, date
+        )
 
         header_map[f"#{anchor}"] = notes
 
