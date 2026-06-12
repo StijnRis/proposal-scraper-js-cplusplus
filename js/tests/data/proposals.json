@@ -3,5 +3,22 @@
         "proposal_id": "Legacy RegExp features in JavaScript",
         "title": "Legacy RegExp features in JavaScript",
         "authors": ["C...e"]
+    },
+    {
+        "proposal_id": "Decorators",
+        "statusses": [
+            {
+                "raw_status": "Stage 2",
+                "date": "2017-11-11T15:30:16"
+            },
+            {
+                "raw_status": "Stage 3",
+                "date": "2022-03-28T20:56:29"
+            },
+            {
+                "raw_status": "Stage 2.7",
+                "date": "2026-05-19T15:01:33"
+            }
+        ]
     }
 ]

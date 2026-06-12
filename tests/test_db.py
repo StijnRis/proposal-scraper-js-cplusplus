@@ -1,23 +1,13 @@
+import glob
 import json
 import sqlite3
 
-CPLUSPLUS_DB_PATH = "cplusplus/output/cplusplus_proposals.sqlite3"
-JS_DB_PATH = "js/output/js_proposals.sqlite3"
 
-
-def test():
-    # show js proposal with name has regexp
-
-    conn = sqlite3.connect(JS_DB_PATH)
-    cur = conn.cursor()
-    cur.execute(
-        """
-        SELECT * FROM ProposalRevision
-        WHERE title LIKE '%regexp%';
-        """
-    )
-    rows = cur.fetchall()
-    print(rows)
+def get_most_recent_db_path(project: str) -> str:
+    files = glob.glob(f"{project}/output/{project}_proposals_*.sqlite3")
+    if not files:
+        raise FileNotFoundError(f"No database files found for project {project}")
+    return max(files)
 
 
 def test_js_amount_of_revisions():
@@ -29,7 +19,7 @@ def test_cplusplus_amount_of_revisions():
 
 
 def check_amount_of_revisions(project: str):
-    conn = sqlite3.connect(f"{project}/output/{project}_proposals.sqlite3")
+    conn = sqlite3.connect(get_most_recent_db_path(project))
     cur = conn.cursor()
 
     with open(f"{project}/tests/data/proposals.json", "r") as f:
@@ -64,7 +54,7 @@ def test_cplusplus_titles():
 
 
 def check_titles(project: str):
-    conn = sqlite3.connect(f"{project}/output/{project}_proposals.sqlite3")
+    conn = sqlite3.connect(get_most_recent_db_path(project))
     cur = conn.cursor()
 
     with open(f"{project}/tests/data/proposals.json", "r") as f:
@@ -102,7 +92,7 @@ def test_cplusplus_authors():
 
 
 def check_authors(project: str):
-    conn = sqlite3.connect(f"{project}/output/{project}_proposals.sqlite3")
+    conn = sqlite3.connect(get_most_recent_db_path(project))
     cur = conn.cursor()
 
     with open(f"{project}/tests/data/proposals.json", "r") as f:
@@ -141,7 +131,7 @@ def test_cplusplus_revision_dates():
 
 
 def check_revision_dates(project: str):
-    conn = sqlite3.connect(f"{project}/output/{project}_proposals.sqlite3")
+    conn = sqlite3.connect(get_most_recent_db_path(project))
     cur = conn.cursor()
 
     with open(f"{project}/tests/data/proposals.json", "r") as f:
@@ -179,7 +169,7 @@ def test_cplusplus_proposal_content():
 
 
 def check_proposal_content(project: str):
-    conn = sqlite3.connect(f"{project}/output/{project}_proposals.sqlite3")
+    conn = sqlite3.connect(get_most_recent_db_path(project))
     cur = conn.cursor()
 
     with open(f"{project}/tests/data/proposals.json", "r") as f:
@@ -221,7 +211,7 @@ def test_cplusplus_proposal_statusses():
 
 
 def check_proposal_stages(project: str):
-    conn = sqlite3.connect(f"{project}/output/{project}_proposals.sqlite3")
+    conn = sqlite3.connect(get_most_recent_db_path(project))
     cur = conn.cursor()
 
     with open(f"{project}/tests/data/proposals.json", "r") as f:

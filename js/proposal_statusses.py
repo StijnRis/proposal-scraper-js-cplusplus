@@ -243,13 +243,13 @@ def parse_table(table: Tag, created_at: datetime) -> list[StageHistoryEvent]:
             stage = "Stage " + cells[col_indices["stage"]].get_text(strip=True)
         else:
             possible_stages = [
-                "stage 0",
-                "stage 1",
-                "stage 2",
-                "stage 2.7",
-                "stage 3",
-                "stage 4",
-                "inactive proposals",
+                r"stage 0",
+                r"stage 1",
+                r"stage 2\.7",
+                r"stage 2",
+                r"stage 3",
+                r"stage 4",
+                r"inactive proposals",
             ]
             # Find closest text stage x in text before this row
             prev_text = row.find_previous(

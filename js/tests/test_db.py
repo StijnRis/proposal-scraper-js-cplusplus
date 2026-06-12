@@ -1,12 +1,18 @@
 import datetime
 import json
 import sqlite3
+from glob import glob
 
-DB_PATH = "./js/output/js_proposals.sqlite3"
+
+def get_most_recent_db_path() -> str:
+    files = glob("js/output/js_proposals_*.sqlite3")
+    if not files:
+        raise FileNotFoundError("No database files found for project js")
+    return max(files)
 
 
 def test_temporal_proposal():
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(get_most_recent_db_path())
     cur = conn.cursor()
 
     proposal = cur.execute(
@@ -91,7 +97,7 @@ def test_temporal_proposal():
 
 
 def test_meeting_notes():
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(get_most_recent_db_path())
     cur = conn.cursor()
 
     with open("js/tests/data/comments.json", "r", encoding="utf-8") as f:
